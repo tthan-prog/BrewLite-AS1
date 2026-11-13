@@ -4,7 +4,7 @@
 
 Bài tập lớn môn **Công nghệ Phần mềm**, Trường Đại học Sài Gòn, học kỳ I năm học 2026–2027, làm theo quy trình **Agile Scrum**. Hạn nộp: 15/11/2026.
 
-> Đây là repository riêng của **Assignment 1**. Assignment 2 được thực hiện ở một repository khác, không dùng chung mã nguồn hay tài liệu với repository này.
+> 
 
 ## Trạng thái dự án (cập nhật 13/11/2026)
 
@@ -109,7 +109,7 @@ Một số gói của NestJS CLI yêu cầu `node: ^22.22.3 || ^24.15.0 || >=26.
 | Chạy và đóng gói | Docker Compose | `docker compose up --build` |
 | Kiểm thử | Vitest, Supertest | Unit, e2e, test bắt buộc Task 10 |
 
-Phạm vi chạy: bằng docker-compose trên máy nhóm hoặc máy giảng viên để demo.
+Phạm vi chạy: bằng docker-compose trên máy cá nhân để demo
 
 ---
 
@@ -135,7 +135,7 @@ brewlite/
 │   └── src/app/                   # menu, login, register, orders/confirmation, orders/history
 ├── docs/
 │   ├── team-agreement.md          # thỏa thuận nhóm
-│   ├── message-to-lecturer.md     # bản nháp tin nhắn hỏi giảng viên
+│   ├── message-to-lecturer.md     # bản nháp tin nhắn 
 │   ├── scrum/                     # backlog, burndown, minutes/
 │   ├── design/                    # ERD
 │   └── report/                    # báo cáo LaTeX (main.tex, figures/)
@@ -444,7 +444,7 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | C | Hà Thiên Long | 3124410193 | Frontend, kiểm thử, Product Owner tạm |
 | D | Giản Thiên Lực | 3124410206 | Frontend |
 
-**Giảng viên hướng dẫn:** Từ Lăng Phiêu
+**Giảng viên hướng dẫn:** Từ Lãng Phiêu
 
 ---
 

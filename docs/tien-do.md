@@ -1,6 +1,6 @@
 # Bảng tiến độ Assignment 1 (cập nhật 23/10/2026; mục 2 bổ sung 31/10/2026, mục 4 bổ sung 01/11/2026)
 
-Hạn nộp: 15/11/2026 (giảng viên dời từ 02/11/2026). Điểm: 10 task, mỗi task 1 điểm, tổng 10 điểm.
+Hạn nộp: 15/11/2026 . Điểm: 10 task, mỗi task 1 điểm, tổng 10 điểm.
 
 ## 1. Tiến độ 10 task
 
