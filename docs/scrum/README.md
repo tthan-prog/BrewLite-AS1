@@ -2,6 +2,8 @@
 
 Thư mục này lưu **bằng chứng làm theo Scrum** (đề yêu cầu quy trình Agile Scrum đầy đủ). Cập nhật đều đặn, không để dồn về cuối.
 
+**Ký hiệu thành viên** dùng trong backlog và biên bản: **A** Nguyễn Lê Nhựt Thắng (3124560085), **B** Hồ Thiên Ngân (3124410224), **C** Hà Thiên Long (3124410193), **D** Giản Thiên Lực (3124410206). Nhánh `Thành-viên-E` trong lịch sử Git (PR #4) là nhánh của Hà Thiên Long khi còn mang ký hiệu E lúc nhóm mới lập; nay là C, công việc không đổi.
+
 ## Danh sách tài liệu
 
 | File | Nội dung | Người giữ |
