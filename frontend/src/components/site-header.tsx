@@ -43,6 +43,7 @@ export default function SiteHeader() {
   }
 
   return (
+    <>
     <header className="site-header">
       <div className="nav-wrap">
         <Link href="/" className="brand" aria-label="BrewLite trang chủ">
@@ -72,18 +73,20 @@ export default function SiteHeader() {
           )}
         </div>
       </div>
-      {/* Thanh điều hướng dưới cùng trên điện thoại (màn hình nhỏ ẩn các liên kết ở trên). */}
-      <nav className="mobile-tabbar" aria-label="Điều hướng trên điện thoại">
-        <Link href="/menu">
-          <span aria-hidden="true">☕</span>Thực đơn
-        </Link>
-        <Link href="/cart">
-          <span aria-hidden="true">🛒</span>Giỏ hàng{count > 0 && <b className="cart-badge">{count}</b>}
-        </Link>
-        <Link href="/orders/history">
-          <span aria-hidden="true">🧾</span>Đơn hàng
-        </Link>
-      </nav>
     </header>
+    {/* Thanh điều hướng dưới cùng trên điện thoại (màn hình nhỏ ẩn các liên kết ở trên).
+        Đặt ngoài <header>: header có backdrop-filter nên position: fixed bên trong sẽ bám theo header. */}
+    <nav className="mobile-tabbar" aria-label="Điều hướng trên điện thoại">
+      <Link href="/menu">
+        <span aria-hidden="true">☕</span>Thực đơn
+      </Link>
+      <Link href="/cart">
+        <span aria-hidden="true">🛒</span>Giỏ hàng{count > 0 && <b className="cart-badge">{count}</b>}
+      </Link>
+      <Link href="/orders/history">
+        <span aria-hidden="true">🧾</span>Đơn hàng
+      </Link>
+    </nav>
+    </>
   );
 }
