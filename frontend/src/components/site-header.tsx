@@ -72,6 +72,18 @@ export default function SiteHeader() {
           )}
         </div>
       </div>
+      {/* Thanh điều hướng dưới cùng trên điện thoại (màn hình nhỏ ẩn các liên kết ở trên). */}
+      <nav className="mobile-tabbar" aria-label="Điều hướng trên điện thoại">
+        <Link href="/menu">
+          <span aria-hidden="true">☕</span>Thực đơn
+        </Link>
+        <Link href="/cart">
+          <span aria-hidden="true">🛒</span>Giỏ hàng{count > 0 && <b className="cart-badge">{count}</b>}
+        </Link>
+        <Link href="/orders/history">
+          <span aria-hidden="true">🧾</span>Đơn hàng
+        </Link>
+      </nav>
     </header>
   );
 }
