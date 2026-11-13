@@ -26,11 +26,11 @@ Không tính commit gộp nhánh (merge).
 
 | Thành viên | Tên tác giả trên Git | Số commit |
 |---|---|---|
-| A | Le Thang, Nhựt Thắng | 29 |
+| A | Le Thang, Nhựt Thắng | 30 |
 | B | Ho Thien Ngan | 4 |
 | C | hathienlong | 1 |
 | D | Thành viên D | 1 |
-| Cộng | | 35 |
+| Cộng | | 36 |
 
 Số commit lệch rõ: phần lớn việc tích hợp, sửa lỗi và hoàn thiện giao diện do A thực hiện trực tiếp. Bảng ở mục 2 phản ánh việc được giao theo kế hoạch, không thay cho nhận xét này.
 

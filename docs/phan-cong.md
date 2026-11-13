@@ -19,6 +19,7 @@
 | Scrum Master: biên bản Sprint, Burndown | `docs/scrum/minutes/01–06`, `burndown-*.csv` | 14/10/2026 | 25/10/2026 | Hoàn thành | 100 | Biên bản 01–06 đã hoàn chỉnh (01/11) |
 | Nghiệm thu chéo Task 3, 4, 5, 6, 9 và Task 10 (10b, 10c) | Dòng nghiệm thu trong `dod-nghiem-thu.md` | 23/10/2026 | 24/10/2026 | Đạt (23/10) | 100 | Chạy Docker |
 | Hoàn thiện giao diện và luồng đặt hàng | Trang `/cart`, `/checkout` (đặt đơn rồi thanh toán), giỏ hàng lưu bằng React Context và localStorage, lưu mức đường/đá vào đơn, chi tiết đơn có từng món, báo hết hàng, thông báo lỗi tiếng Việt, thanh tab trên điện thoại; 33 test tích hợp | 26/10/2026 | 13/11/2026 | Hoàn thành (13/11) | 100 | Thử toàn bộ luồng đặt hàng trên máy tính và điện thoại |
+| Bộ kiểm thử API Postman | `docs/postman/` (51 request, 85 kiểm tra), `docs/kich-ban-test-backend.md` | 13/11/2026 | 13/11/2026 | Hoàn thành (13/11) | 100 | Chạy bằng Postman hoặc newman |
 | Ảnh minh họa cho báo cáo | Ảnh luồng chính và ảnh kết quả test (`docs/report/figures`) | 13/11/2026 | 13/11/2026 | Hoàn thành (13/11) | 100 | Chụp từ bản chạy bằng Docker |
 | Báo cáo LaTeX Assignment 1 (theo mẫu SGU) | `docs/report/main.tex` | 29/10/2026 | 13/11/2026 | Hoàn thành (13/11) | 100 | Nộp 15/11/2026 |
 

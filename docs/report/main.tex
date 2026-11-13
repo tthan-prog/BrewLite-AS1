@@ -185,7 +185,7 @@ BrewLite là ứng dụng web mobile-first giúp khách đặt đồ uống và 
 Frontend & Next.js (mobile-first): thực đơn, chi tiết món, giỏ hàng (React Context, localStorage), thanh toán hai bước, xác nhận và lịch sử đơn; thanh tab ở đáy màn hình trên điện thoại \\
 Backend & NestJS, class-validator, JWT, bcrypt \\
 Cơ sở dữ liệu & PostgreSQL 16, Prisma 7 (migration, seed); 9 bảng, ERD ở Hình~\ref{fig:erd} (phụ lục) \\
-Kiểm thử, vận hành & Vitest, Supertest (PostgreSQL thật); Docker Compose \\
+Kiểm thử, vận hành & Vitest, Supertest (PostgreSQL thật); Postman/newman; Docker Compose \\
 Mã nguồn & \url{https://github.com/tthan-prog/BrewLite-AS1}, nhánh \texttt{main} \\
 Bản chạy & Chạy cục bộ bằng \texttt{docker compose up --build} (frontend cổng 3000, backend 3001, PostgreSQL 5432), hướng dẫn trong \texttt{README.md} \\ \bottomrule
 \end{tabular}
@@ -299,10 +299,11 @@ Bốn nghiệp vụ: (1) máy trạng thái đơn (PENDING, PAID, PREPARING, REA
 \textbf{Mức} & \textbf{Công cụ} & \textbf{Số test} & \textbf{Kết quả} \\ \midrule
 Unit & Vitest & 22 & 22/22 đạt \\
 Tích hợp (PostgreSQL thật) & Vitest + Supertest & 33 & 33/33 đạt \\
+Kiểm thử API trên hệ thống đang chạy & Postman/newman & 51 request & 85/85 kiểm tra đạt \\
 \bottomrule
 \end{tabular}
 \end{center}
-Chạy ngày 13/11/2026 bằng \texttt{npm test} và \texttt{npm run test:e2e} trong thư mục \texttt{backend}, CSDL PostgreSQL chạy bằng Docker Compose (ảnh kết quả: Hình~\ref{fig:testunit} và~\ref{fig:teste2e}, phụ lục). Test tích hợp gửi yêu cầu HTTP thật vào ứng dụng NestJS, kiểm tra từng API, phân quyền, validate, giá theo size/topping, mức đường/đá, khuyến mãi, điểm thưởng và ba test bắt buộc của Task 10.
+Chạy ngày 13/11/2026 bằng \texttt{npm test} và \texttt{npm run test:e2e} trong thư mục \texttt{backend}, CSDL PostgreSQL chạy bằng Docker Compose (ảnh kết quả: Hình~\ref{fig:testunit} và~\ref{fig:teste2e}, phụ lục). Test tích hợp gửi yêu cầu HTTP thật vào ứng dụng NestJS, kiểm tra từng API, phân quyền, validate, giá theo size/topping, mức đường/đá, khuyến mãi, điểm thưởng và ba test bắt buộc của Task 10. Bộ Postman (\texttt{docs/postman}, kịch bản ở \texttt{docs/kich-ban-test-backend.md}) gọi API trên hệ thống chạy bằng Docker, xếp theo Task 1--10, gồm cả các trường hợp lỗi (thiếu token, dữ liệu sai, mã khuyến mãi sai, chuyển trạng thái sai).
 
 \subsection{Ba test bắt buộc của Task 10}
 \begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
@@ -315,7 +316,7 @@ Chạy ngày 13/11/2026 bằng \texttt{npm test} và \texttt{npm run test:e2e} t
 \section{Bàn giao và nhìn lại}
 \textbf{Bàn giao:} mã nguồn trên Git; \texttt{docker compose up --build} chạy đủ db, backend, frontend; README hướng dẫn cài đặt, chạy, kiểm thử; demo luồng thực đơn, giỏ hàng, đăng nhập, đặt đơn với mã khuyến mãi, thanh toán lỗi rồi thử lại, xác nhận, lịch sử, cả trên giao diện điện thoại.
 
-\textbf{Retrospective.} Làm tốt: theo đường găng và có test chứng minh nghiệp vụ Task 10; README và Docker giúp chạy lại dễ. Cần cải thiện: bắt đầu muộn (Sprint 1 trễ 9 điểm); phân bố commit giữa các thành viên chưa đều (không tính commit gộp nhánh: A 29, B 4, C 1, D 1 trên 35 commit; A tích hợp phần lớn mã); giai đoạn hoàn thiện cho thấy cần tự thử luồng như khách hàng sớm hơn, ngay trong từng Sprint; nghiệm thu chéo mới ghi trong tài liệu nhóm, chưa có Approve trên từng Pull Request.
+\textbf{Retrospective.} Làm tốt: theo đường găng và có test chứng minh nghiệp vụ Task 10; README và Docker giúp chạy lại dễ. Cần cải thiện: bắt đầu muộn (Sprint 1 trễ 9 điểm); phân bố commit giữa các thành viên chưa đều (không tính commit gộp nhánh: A 30, B 4, C 1, D 1 trên 36 commit; A tích hợp phần lớn mã); giai đoạn hoàn thiện cho thấy cần tự thử luồng như khách hàng sớm hơn, ngay trong từng Sprint; nghiệm thu chéo mới ghi trong tài liệu nhóm, chưa có Approve trên từng Pull Request.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Backlog sau:} giao diện barista; cổng thanh toán thật; cho khách tự hủy đơn chưa thanh toán.

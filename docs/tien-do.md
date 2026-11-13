@@ -26,6 +26,7 @@ Tổng: 10/10 task xong code; nghiệm thu chéo ghi nhận Đạt theo xác nh�
 | Unit test (Vitest) | 22/22 đạt (`docs/report/figures/ev11-unit-test-22.png`) |
 | Tích hợp e2e (Supertest, PostgreSQL thật) | 33/33 đạt (`docs/report/figures/ev12-e2e-test-33.png`) |
 | Test bắt buộc Task 10 | (a) chặn chuyển trạng thái sai, (b) cùng Idempotency-Key chỉ 1 đơn, (c) 20 yêu cầu song song khi kho còn 5 thì đúng 5 thành công: **đạt cả ba** |
+| Kiểm thử API bằng Postman/newman | 51 request, 85 kiểm tra đạt (`docs/kich-ban-test-backend.md`) |
 | Lint, build backend và frontend | Đạt |
 | Docker Compose | Chạy được 3 dịch vụ |
 | Thử luồng như khách hàng | Đạt trên máy tính và giao diện điện thoại: thêm món, giỏ hàng, đăng nhập giữa chừng, mã khuyến mãi, thanh toán lỗi rồi thử lại, xác nhận, lịch sử |

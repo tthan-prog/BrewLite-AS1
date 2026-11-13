@@ -9,7 +9,7 @@ Bài tập lớn 1 (giữa kì) môn **Công nghệ Phần mềm**, Trường Đ
 | Hạng mục | Tình trạng |
 |---|---|
 | 10 task | Hoàn thành, chạy đầu-cuối từ giao diện đến CSDL; cả 10 task đạt Definition of Done qua nghiệm thu chéo (`docs/scrum/dod-nghiem-thu.md`) |
-| Kiểm thử | 22 unit test và 33 test tích hợp (PostgreSQL thật) đạt; lint và build backend, frontend đạt |
+| Kiểm thử | 22 unit test và 33 test tích hợp (PostgreSQL thật) đạt; bộ Postman 51 request, 85 kiểm tra đạt; lint và build backend, frontend đạt |
 | Docker Compose | Chạy đủ 3 dịch vụ (db, backend, frontend); đã chạy trên Windows (Docker Desktop + WSL 2) |
 | Bằng chứng Scrum | Product Backlog, 3 Sprint Backlog, Burndown, 6 biên bản (`docs/scrum/`) |
 | Báo cáo | LaTeX tại `docs/report/` |
@@ -114,7 +114,7 @@ Một số gói của NestJS CLI yêu cầu `node: ^22.22.3 || ^24.15.0 || >=26.
 | Tài liệu | Thư mục `docs/` | Báo cáo LaTeX, tài liệu Scrum |
 | Sơ đồ | Mermaid, draw.io | ERD (`docs/design/ERD_MemberB`), state machine |
 | Chạy và đóng gói | Docker Compose | `docker compose up --build` |
-| Kiểm thử | Vitest, Supertest | Unit, e2e, test bắt buộc Task 10 |
+| Kiểm thử | Vitest, Supertest, Postman/newman | Unit, e2e, test bắt buộc Task 10; thử API thủ công |
 
 Phạm vi chạy: bằng Docker Compose trên máy cá nhân để demo.
 
@@ -146,6 +146,8 @@ brewlite/
 ├── docs/
 │   ├── team-agreement.md          # thỏa thuận nhóm
 │   ├── phan-cong.md, tien-do.md, bang-dong-gop.md
+│   ├── kich-ban-test-backend.md   # kịch bản kiểm thử API
+│   ├── postman/                   # bộ kiểm thử Postman
 │   ├── message-to-lecturer.md     # tin nhắn nộp bài
 │   ├── scrum/                     # backlog, burndown, minutes/
 │   ├── design/                    # ERD
@@ -387,6 +389,14 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 
 **Kết quả:** 22 unit test và 33 test tích hợp đạt (chạy ngày 13/11/2026); lint và build backend, frontend đạt.
 
+**Kiểm thử API bằng Postman (không cần giao diện):** bộ 51 request, 85 kiểm tra tự động xếp theo Task 1–10 ở `docs/postman/`. Khi hệ thống đang chạy (Mục 6.2), chạy ở thư mục gốc:
+
+```bash
+npx newman run docs/postman/brewlite-as1.postman_collection.json -e docs/postman/brewlite-as1-local.postman_environment.json
+```
+
+Hoặc Import 2 file vào Postman rồi **Run collection**. Kịch bản chi tiết: `docs/kich-ban-test-backend.md`.
+
 **Ba test bắt buộc của Task 10:**
 
 | Test | Nội dung | Vị trí |
@@ -427,6 +437,7 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | Thỏa thuận nhóm | `docs/team-agreement.md` |
 | ERD (khớp `schema.prisma`) | `docs/design/ERD_MemberB/` |
 | Phân công, tiến độ, đóng góp | `docs/phan-cong.md`, `docs/tien-do.md`, `docs/bang-dong-gop.md` |
+| Kịch bản kiểm thử backend, bộ Postman | `docs/kich-ban-test-backend.md`, `docs/postman/` |
 | Báo cáo | `docs/report/main.tex` (LaTeX) |
 
 **Nhịp Sprint:**
