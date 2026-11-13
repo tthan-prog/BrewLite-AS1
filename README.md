@@ -357,6 +357,7 @@ Mọi chuyển tiếp khác bị chặn (lỗi 4xx). Mã nguồn: `backend/src/o
 |---|---|
 | Giá | Server tính lại từ CSDL: giá gốc + phụ thu size (S +0, M +5.000, L +10.000đ) + topping; không tin giá từ client |
 | Tồn kho | Trừ khi tạo đơn bằng `updateMany` có điều kiện (stock ≥ số lượng) trong transaction; hủy đơn hoàn kho; giao diện không cho thêm quá số còn lại |
+| Giới hạn đặt hàng | Tồn kho tính theo từng sản phẩm (dữ liệu mẫu: 100 ly mỗi sản phẩm); hết thì hiện "Hết hàng" và không đặt được. Mỗi đơn tối đa 50 dòng món, mỗi món tối đa 50 ly và 10 loại topping (máy chủ trả lỗi 400 nếu vượt). Chưa tính tồn kho theo nguyên liệu và công thức pha chế. |
 | Idempotency | Header `Idempotency-Key` bắt buộc khi tạo đơn và thanh toán; ràng buộc unique, gửi lại cùng khóa trả về kết quả cũ |
 | Khuyến mãi | `WELCOME10`, `SAVE20K` (điều kiện đơn tối thiểu ở Mục 6.2); máy chủ tính giảm giá khi tạo đơn, khách thấy tổng tiền trước khi thanh toán |
 | Điểm thưởng | 1 điểm cho mỗi 10.000đ, cộng khi đơn PAID, thu hồi khi hủy đơn đã PAID |

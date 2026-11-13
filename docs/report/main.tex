@@ -257,7 +257,7 @@ Mỗi task chỉ tính hoàn thành khi đạt Definition of Done: chạy đư�
 \end{center}
 
 \subsection{Task 10 -- nghiệp vụ backend}
-Bốn nghiệp vụ: (1) máy trạng thái đơn (PENDING, PAID, PREPARING, READY, COMPLETED, thêm PAYMENT\_FAILED và CANCELLED), mọi chuyển trạng thái đi qua một hàm kiểm tra duy nhất; (2) thanh toán idempotent bằng \texttt{Idempotency-Key}, ràng buộc duy nhất theo \texttt{(userId, key)}; (3) kiểm soát tồn kho đồng thời bằng cập nhật có điều kiện \texttt{UPDATE ... WHERE stock >= n} trong transaction khi tạo đơn, một dạng khóa lạc quan (optimistic) không cần cột \texttt{version}: không bán quá số lượng, hủy đơn thì hoàn kho; (4) mã khuyến mãi (\texttt{WELCOME10} giảm 10\%) và điểm thưởng (1 điểm cho mỗi 10.000 đồng, cộng khi đơn PAID).
+Bốn nghiệp vụ: (1) máy trạng thái đơn (PENDING, PAID, PREPARING, READY, COMPLETED, thêm PAYMENT\_FAILED và CANCELLED), mọi chuyển trạng thái đi qua một hàm kiểm tra duy nhất; (2) thanh toán idempotent bằng \texttt{Idempotency-Key}, ràng buộc duy nhất theo \texttt{(userId, key)}; (3) kiểm soát tồn kho đồng thời bằng cập nhật có điều kiện \texttt{UPDATE ... WHERE stock >= n} trong transaction khi tạo đơn, một dạng khóa lạc quan (optimistic) không cần cột \texttt{version}: không bán quá số lượng, hủy đơn thì hoàn kho; tồn kho tính theo từng sản phẩm, mỗi món tối đa 50 ly, mỗi đơn tối đa 50 dòng món; (4) mã khuyến mãi (\texttt{WELCOME10} giảm 10\%) và điểm thưởng (1 điểm cho mỗi 10.000 đồng, cộng khi đơn PAID).
 
 
 \begin{figure}[h!]
@@ -315,7 +315,7 @@ Chạy ngày 13/11/2026 bằng \texttt{npm test} và \texttt{npm run test:e2e} t
 \section{Bàn giao và nhìn lại}
 \textbf{Bàn giao:} mã nguồn trên Git; \texttt{docker compose up --build} chạy đủ db, backend, frontend; README hướng dẫn cài đặt, chạy, kiểm thử; demo luồng thực đơn, giỏ hàng, đăng nhập, đặt đơn với mã khuyến mãi, thanh toán lỗi rồi thử lại, xác nhận, lịch sử, cả trên giao diện điện thoại.
 
-\textbf{Retrospective.} Làm tốt: theo đường găng và có test chứng minh nghiệp vụ Task 10; README và Docker giúp chạy lại dễ. Cần cải thiện: bắt đầu muộn (Sprint 1 trễ 9 điểm); phân bố commit giữa các thành viên chưa đều (không tính commit gộp nhánh: A 28, B 4, C 1, D 1 trên 34 commit; A tích hợp phần lớn mã); giai đoạn hoàn thiện cho thấy cần tự thử luồng như khách hàng sớm hơn, ngay trong từng Sprint; nghiệm thu chéo mới ghi trong tài liệu nhóm, chưa có Approve trên từng Pull Request.
+\textbf{Retrospective.} Làm tốt: theo đường găng và có test chứng minh nghiệp vụ Task 10; README và Docker giúp chạy lại dễ. Cần cải thiện: bắt đầu muộn (Sprint 1 trễ 9 điểm); phân bố commit giữa các thành viên chưa đều (không tính commit gộp nhánh: A 29, B 4, C 1, D 1 trên 35 commit; A tích hợp phần lớn mã); giai đoạn hoàn thiện cho thấy cần tự thử luồng như khách hàng sớm hơn, ngay trong từng Sprint; nghiệm thu chéo mới ghi trong tài liệu nhóm, chưa có Approve trên từng Pull Request.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Backlog sau:} giao diện barista; cổng thanh toán thật; cho khách tự hủy đơn chưa thanh toán.
