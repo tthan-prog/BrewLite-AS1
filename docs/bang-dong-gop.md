@@ -26,10 +26,10 @@ Không tính commit gộp nhánh (merge).
 
 | Thành viên | Tên tác giả trên Git | Số commit |
 |---|---|---|
-| A | Le Thang, Nhựt Thắng | 30 |
+| A | Le Thang | 30 |
 | B | Ho Thien Ngan | 4 |
-| C | hathienlong | 1 |
-| D | Thành viên D | 1 |
+| C | Ha Thien Long | 1 |
+| D | Gian Thien Luc | 1 |
 | Cộng | | 36 |
 
 Số commit lệch rõ: phần lớn việc tích hợp, sửa lỗi và hoàn thiện giao diện do A thực hiện trực tiếp. Bảng ở mục 2 phản ánh việc được giao theo kế hoạch, không thay cho nhận xét này.
@@ -40,7 +40,7 @@ Mỗi người tự đọc mục 2, ghi "Đồng ý" hoặc nêu chỗ cần s�
 
 | Thành viên | MSSV | Xác nhận | Ngày |
 |---|---|---|---|
-| A Nguyễn Lê Nhựt Thắng | 3124560085 | | |
-| B Hồ Thiên Ngân | 3124410224 | | |
-| C Hà Thiên Long | 3124410193 | | |
-| D Giản Thiên Lực | 3124410206 | | |
+| A Nguyễn Lê Nhựt Thắng | 3124560085 | Đồng ý | 14/11 |
+| B Hồ Thiên Ngân | 3124410224 | Đồng ý | 14/11 |
+| C Hà Thiên Long | 3124410193 | Đồng ý | 14/11 |
+| D Giản Thiên Lực | 3124410206 | Đồng ý | 14/11 |

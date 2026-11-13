@@ -4,7 +4,7 @@
 
 **Tiêu đề (nếu gửi email):** [Lớp/Nhóm] – Nộp báo cáo Bài tập lớn 1 (giữa kì) BrewLite
 
-Kính gửi thầy Từ Lăng Phiêu,
+Kính gửi thầy Từ Lãng Phiêu,
 
 Em là Nguyễn Lê Nhựt Thắng, MSSV 3124560085, đại diện nhóm [số/tên nhóm] lớp [tên lớp] môn Công nghệ Phần mềm. Nhóm em xin nộp báo cáo Bài tập lớn 1 (giữa kì) BrewLite theo quy trình Agile Scrum:
 

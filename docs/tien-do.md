@@ -40,7 +40,7 @@ Ngày chạy: 13/11/2026.
 | 1 | 14–18/10 | 11 | 9 | Trễ: chỉ xong Task 1 |
 | 2 | 19–22/10 | 22 (13 mới + 9 tồn) | 8 | Còn Task 7 backend và API products |
 | 3 | 23–25/10 | 24 (16 mới + 8 tồn) | 0 | Đủ 10 task |
-| Hoàn thiện | 26/10–13/11 | – | – | Hoàn thiện giao diện và luồng đặt hàng, báo cáo |
+| Hoàn thiện | 26/10–14/11 | – | – | Hoàn thiện giao diện và luồng đặt hàng, báo cáo |
 
 Tài liệu: Product Backlog, 3 Sprint Backlog, Burndown, 6 biên bản, quy trình DoD, README, ERD, báo cáo LaTeX (`docs/report`).
 
@@ -53,7 +53,7 @@ Tài liệu: Product Backlog, 3 Sprint Backlog, Burndown, 6 biên bản, quy tr�
 | Sprint 3 Review và Retrospective | Cả nhóm | 25/10 | Hoàn thành |
 | Hoàn thiện giao diện, luồng đặt hàng và ERD | Nguyễn Lê Nhựt Thắng | 13/11 | Hoàn thành |
 | Báo cáo LaTeX: MSSV, ảnh minh họa, build PDF | Nguyễn Lê Nhựt Thắng | 13/11 | Hoàn thành |
-| Mỗi thành viên xác nhận `docs/bang-dong-gop.md` | Cả nhóm | 14/11 | Chờ xác nhận |
+| Mỗi thành viên xác nhận `docs/bang-dong-gop.md` | Cả nhóm | 14/11 | Hoàn thành |
 | Nộp báo cáo và link repository | Nguyễn Lê Nhựt Thắng | 15/11 | Chưa nộp |
 
 ## 5. Rủi ro
@@ -62,4 +62,4 @@ Tài liệu: Product Backlog, 3 Sprint Backlog, Burndown, 6 biên bản, quy tr�
 |---|---|---|
 | Nghiệm thu chéo thực hiện bằng cách chạy Docker, chưa có Approve trên Pull Request | Thấp | Ghi rõ trong `dod-nghiem-thu.md` (chú thích D2) |
 | Burndown Sprint 1 trễ | Thấp | Đã ghi trung thực trong Retrospective |
-| Làm song song Assignment 2 cùng hạn | Cao | Assignment 2 làm ở repository riêng, không dùng chung mã nguồn hay tài liệu với repository này |
+

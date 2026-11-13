@@ -150,3 +150,4 @@ STAFF chuyển PREPARING → READY → COMPLETED; chuyển sai bị chặn.
 
 - Điểm thưởng (1 điểm / 10.000đ khi đơn PAID, thu hồi khi hủy) và kiểm thử 20 yêu cầu đặt đồng thời khi kho còn 5 được kiểm tra trong test tích hợp (`backend/test/assign1.e2e-spec.ts`), vì Postman chạy tuần tự từng request.
 - Mỗi lần chạy tạo vài đơn mới và trừ tồn kho của sản phẩm còn hàng đầu tiên. Muốn đưa dữ liệu về ban đầu: chạy lại lệnh seed (xóa toàn bộ dữ liệu cũ).
+- Các ô 404, 400 màu đỏ bên phải (ví dụ BT-05, BT-06) không phải lỗi. Đó là các test cố ý gửi dữ liệu sai để kiểm tra backend từ chối đúng cách. Dòng PASS xanh bên dưới mỗi ô cho biết backend trả đúng mã lỗi mong đợi. Khi trình bày, bạn có thể nói: “Mã đỏ là trường hợp lỗi có chủ đích; PASS nghĩa là hệ thống chặn đúng.”
