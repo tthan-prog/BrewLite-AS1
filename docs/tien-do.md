@@ -28,7 +28,8 @@ Tổng: 10/10 task xong code; nghiệm thu chéo ghi nhận Đạt theo xác nh�
 | Test bắt buộc Task 10 | (a) chặn chuyển trạng thái sai, (b) cùng Idempotency-Key chỉ 1 đơn, (c) 20 yêu cầu song song khi kho còn 5 thì đúng 5 thành công: **đạt cả ba** |
 | Lint, build backend | Sạch |
 | Lint, build frontend | Đạt |
-| Chạy lại ngày 13/11/2026 trên tag `assign1-final` | 22/22 unit, 32/32 tích hợp đạt (ảnh `docs/report/figures/ev11-unit-test-22.png`, `ev12-e2e-test-32.png`) |
+| Chạy lại ngày 13/11/2026 trên tag `assign1-final` | 22/22 unit, 32/32 tích hợp đạt |
+| Sau rà soát 13/11/2026 (nhánh `main`) | 22/22 unit, 33/33 tích hợp đạt (ảnh `docs/report/figures/ev11-unit-test-22.png`, `ev12-e2e-test-33.png`); lint, build đạt; thử tay 6 bước luồng đặt hàng đạt (xem README Mục 8.3) |
 | Docker Compose | Chạy được 3 dịch vụ |
 
 ## 3. Scrum

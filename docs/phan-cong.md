@@ -19,6 +19,7 @@
 | Scrum Master: biên bản Sprint, Burndown | `docs/scrum/minutes/01–06`, `burndown-*.csv` | 14/10/2026 | 25/10/2026 | Hoàn thành | 100 | Biên bản 01–06 đã hoàn chỉnh (01/11) |
 | Nghiệm thu chéo Task 3, 4, 5, 6, 9 và Task 10 (10b, 10c) | Dòng nghiệm thu trong `dod-nghiem-thu.md` | 23/10/2026 | 24/10/2026 | Đạt (23/10) | 100 | Chạy Docker |
 | Báo cáo LaTeX Assignment 1 (2–3 trang, theo mẫu SGU) | `docs/report/main.tex` | 29/10/2026 | 13/11/2026 | Nội dung đã hoàn chỉnh (3 trang nội dung + phụ lục); đã điền MSSV; chờ build PDF cuối | 95 `[ước lượng]` | Nộp 15/11/2026 |
+| Rà soát và hoàn thiện trước khi nộp | Nhánh `fix/as1-review`: giỏ hàng lưu state, thanh toán hai bước, lỗi tiếng Việt, lưu mức đường/đá, trang `/cart`, `/checkout`, thanh tab điện thoại; 33 test tích hợp | 13/11/2026 | 13/11/2026 | Hoàn thành | 100 | Thử tay 6 bước luồng đặt hàng đạt |
 
 ## B. Hồ Thiên Ngân (Backend: dữ liệu, đơn hàng)
 

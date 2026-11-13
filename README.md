@@ -11,13 +11,14 @@ Bài tập lớn môn **Công nghệ Phần mềm**, Trường Đại học Sài
 | Hạng mục | Tình trạng |
 |---|---|
 | Assignment 1 (10 task) | **Hoàn thành code cả 10 task**, chạy đầu-cuối từ giao diện đến CSDL |
-| Kiểm thử | 22 unit test và 32 test tích hợp đạt (PostgreSQL thật); chạy lại ngày 13/11/2026 trên tag `assign1-final`: 22/22, 32/32 |
+| Kiểm thử | Nhánh `main` (sau rà soát 13/11/2026): 22 unit test và **33** test tích hợp đạt (PostgreSQL thật). Tại tag `assign1-final`: 22/22, 32/32 (chạy lại 13/11) |
 | Docker Compose | Chạy được 3 dịch vụ (db, backend, frontend); đã chạy thử trên Windows (Docker Desktop + WSL 2) |
 | Nghiệm thu chéo (điều kiện tính điểm) | **Đã nghiệm thu, cả 10 task đạt DoD** (xác nhận 23/10/2026, xem `docs/scrum/dod-nghiem-thu.md`) |
 | Bằng chứng Scrum | Product Backlog, 3 Sprint Backlog, Burndown, biên bản (`docs/scrum/`) |
 | Báo cáo | LaTeX tại `docs/report/` (cách biên dịch trong `docs/report/README.md`) |
 | Sprint 3 Review và Retrospective | Đã họp 25/10/2026 (`docs/scrum/minutes/06-sprint3-review-retro.md`) |
 | Mốc mã nguồn | Tag `assign1-original` (`e7a627a`, 23/10/2026); tag `assign1-final` (`9581384`, 07/11/2026: thêm `frontend/public/.gitkeep` để `docker compose build` chạy trên bản clone sạch) |
+| Rà soát và hoàn thiện | 13/11/2026, nhánh `fix/as1-review` gộp vào `main`: xem [Mục 8.3](#83-rà-soát-và-hoàn-thiện-ngày-13112026) |
 
 Chi tiết từng task ở [Mục 8](#8-api-và-tiến-độ-task).
 
@@ -132,7 +133,7 @@ brewlite/
 │   ├── Dockerfile
 │   └── package.json
 ├── frontend/                      # Next.js (App Router)
-│   └── src/app/                   # menu, login, register, orders/confirmation, orders/history
+│   └── src/app/                   # menu, cart, checkout, login, register, orders/confirmation, orders/history
 ├── docs/
 │   ├── team-agreement.md          # thỏa thuận nhóm
 │   ├── message-to-lecturer.md     # bản nháp tin nhắn 
@@ -305,7 +306,21 @@ Mọi route (trừ `/`, `/health`, `/products*`, `/toppings`, `/auth/register`, 
 | 9 | Xác nhận, lịch sử đơn, bàn giao | 3 | Hà Thiên Long (giao diện); Nguyễn Lê Nhựt Thắng (API, Docker, README) | Xong (`/orders/me`, trang xác nhận, Docker, README) | Đạt |
 | 10 | Nghiệp vụ nâng cao | 3 | Hồ Thiên Ngân (10b, 10c); Nguyễn Lê Nhựt Thắng (10a, 10d) | Xong (state machine, idempotency, tồn kho, khuyến mãi, điểm; test a, b, c) | Đạt |
 
-**Giới hạn đã biết:** thanh toán chỉ mô phỏng; không có giao diện barista; trường đường/đá trong giỏ chỉ hiển thị, chưa lưu vào đơn; migration của các bảng bổ sung viết tay, cần đối chiếu với Prisma khi đổi môi trường.
+**Giới hạn đã biết:** thanh toán chỉ mô phỏng; không có giao diện barista; khách chưa tự hủy được đơn chưa thanh toán (đơn PENDING vẫn giữ kho); migration của các bảng bổ sung viết tay, cần đối chiếu với Prisma khi đổi môi trường.
+
+### 8.3. Rà soát và hoàn thiện ngày 13/11/2026
+
+Trước khi nộp, nhóm rà lại 10 task và thử luồng như một khách hàng thật. Các lỗi tìm thấy được sửa trên nhánh `fix/as1-review` (3 commit), chạy lại 22 unit và 33 test tích hợp đạt:
+
+| Vấn đề tìm thấy | Cách sửa |
+|---|---|
+| Đăng nhập giữa lúc thanh toán hoặc tải lại trang thì mất giỏ hàng (Task 5 yêu cầu lưu state) | Giỏ hàng dùng React Context + localStorage; đăng nhập xong quay về trang thanh toán |
+| Nút thanh toán ghi giá chưa trừ khuyến mãi, khách bị trừ số tiền khác | Thanh toán hai bước: đặt đơn để máy chủ tính tạm tính, giảm giá, tổng tiền; khách xem rồi mới trả |
+| Lỗi máy chủ hiện tiếng Anh; thông báo lỗi cùng màu với thông báo thành công | Đổi sang câu tiếng Việt; lỗi nền đỏ |
+| Trang menu có hai thanh điều hướng; giỏ hàng, thanh toán không chuyển qua lại được | Một thanh điều hướng chung có giỏ hàng; giỏ hàng (`/cart`) và thanh toán (`/checkout`) là trang riêng; thêm thanh tab dưới cùng trên điện thoại |
+| Mức đường/đá không lưu vào đơn; xác nhận, lịch sử không có danh sách món | Thêm cột `sugar`, `ice` (migration `20261113000000_order_item_sugar_ice`); `GET /orders/:id`, `/orders/me` trả kèm tên món, topping; giao diện hiện chi tiết |
+| Menu không báo hết hàng | Hiện "Hết hàng", "Còn N ly"; không cho thêm quá tồn kho |
+| Trang chủ, đăng nhập còn chữ của giai đoạn phát triển | Viết lại nội dung cho khách hàng |
 
 Kết quả nghiệm thu chi tiết: `docs/scrum/dod-nghiem-thu.md`.
 
@@ -362,6 +377,8 @@ npm run build
 Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cùng `DATABASE_URL` và `JWT_SECRET` (ví dụ `docker compose up -d db`, rồi migrate và seed như Mục 6.3). Các test tự tạo dữ liệu riêng nhưng **không** nên chạy trên CSDL có dữ liệu thật.
 
 **Kết quả (23/10/2026, nhánh main):** 22 unit test và 32 test tích hợp đạt; build và lint backend sạch; lint và build frontend đạt.
+
+**Kết quả (13/11/2026, nhánh main sau rà soát):** 22 unit test và 33 test tích hợp đạt (thêm test lưu mức đường/đá và chi tiết đơn); lint, build backend và frontend đạt.
 
 **Ba test bắt buộc của Task 10:**
 
