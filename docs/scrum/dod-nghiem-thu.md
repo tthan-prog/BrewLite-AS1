@@ -1,28 +1,28 @@
 # Quy trình nghiệm thu chéo theo Definition of Done (DoD)
 
-Mục đích: mỗi task trong 10 task của Assignment 1 có **bằng chứng** đạt DoD để được tính 1 điểm. Hạn hoàn thành: **tối 24/10/2026**. Điều phối: A.
+Mục đích: mỗi task trong 10 task của Assignment 1 có **bằng chứng** đạt DoD để được tính 1 điểm. Hạn hoàn thành: **tối 24/10/2026**. Điều phối: Nguyễn Lê Nhựt Thắng.
 
 ## 1. Quy tắc
 
 - Người nghiệm thu **không** phải người viết task đó.
-- Mỗi người nghiệm thu từ 2 đến 3 task theo bảng phân công ở mục 2.
-- Kết quả ghi vào bảng mục 5 và vào Pull Request (comment hoặc Approve). Chụp ảnh màn hình làm bằng chứng nếu được.
-- Task không đạt: ghi rõ lý do, báo A để người viết sửa, sau đó nghiệm thu lại.
+- Task của Hồ Thiên Ngân, Hà Thiên Long, Giản Thiên Lực do Nguyễn Lê Nhựt Thắng nghiệm thu; task của Nguyễn Lê Nhựt Thắng chia đều cho ba thành viên còn lại theo bảng phân công ở mục 2.
+- Cách nghiệm thu: chạy Docker (mục 3) rồi thử theo bảng mục 5; kết quả ghi vào bảng mục 6. Chụp ảnh màn hình làm bằng chứng nếu được.
+- Task không đạt: ghi rõ lý do, báo Nguyễn Lê Nhựt Thắng để người viết sửa, sau đó nghiệm thu lại.
 
 ## 2. Phân công người nghiệm thu
 
 | Task | Nội dung | Người viết chính | Người nghiệm thu |
 |---|---|---|---|
-| 1 | Khởi tạo dự án | A | B |
-| 2 | API sản phẩm | C (B: schema, seed) | D |
-| 3 | Trang Menu | D | E |
-| 4 | Chi tiết, size, topping | D | C |
-| 5 | Giỏ hàng | D | B |
-| 6 | API tạo đơn | B | D |
-| 7 | Đăng ký, đăng nhập | C | E |
-| 8 | Thanh toán | C | B |
-| 9 | Xác nhận, lịch sử đơn | E | C |
-| 10 | Nghiệp vụ nâng cao | B, C | E |
+| 1 | Khởi tạo dự án | Nguyễn Lê Nhựt Thắng | Hồ Thiên Ngân |
+| 2 | API sản phẩm | Nguyễn Lê Nhựt Thắng (Hồ Thiên Ngân: schema, seed) | Giản Thiên Lực |
+| 3 | Trang Menu | Giản Thiên Lực | Nguyễn Lê Nhựt Thắng |
+| 4 | Chi tiết, size, topping | Giản Thiên Lực | Nguyễn Lê Nhựt Thắng |
+| 5 | Giỏ hàng | Giản Thiên Lực | Nguyễn Lê Nhựt Thắng |
+| 6 | API tạo đơn | Hồ Thiên Ngân | Nguyễn Lê Nhựt Thắng |
+| 7 | Đăng ký, đăng nhập | Nguyễn Lê Nhựt Thắng (backend); Hà Thiên Long (giao diện) | Hồ Thiên Ngân |
+| 8 | Thanh toán | Nguyễn Lê Nhựt Thắng (backend); Giản Thiên Lực (giao diện) | Hà Thiên Long |
+| 9 | Xác nhận, lịch sử đơn | Hà Thiên Long (giao diện); Nguyễn Lê Nhựt Thắng (API, Docker, README) | Nguyễn Lê Nhựt Thắng |
+| 10 | Nghiệp vụ nâng cao | Hồ Thiên Ngân (10b, 10c); Nguyễn Lê Nhựt Thắng (10a, 10d) | Nguyễn Lê Nhựt Thắng (10b, 10c); Hà Thiên Long (10a, 10d) |
 
 ## 3. Chuẩn bị (mỗi người nghiệm thu làm một lần)
 
@@ -70,31 +70,33 @@ curl.exe -X POST http://localhost:3001/auth/login -H "Content-Type: application/
 
 ## 6. Ghi kết quả
 
-Người nghiệm thu điền bảng này (hoặc gửi cho A điền). Cập nhật tiếp vào README mục 8.2 và báo cáo mục 6.4.
+Người nghiệm thu điền bảng này (hoặc gửi cho Nguyễn Lê Nhựt Thắng điền). Cập nhật tiếp vào README mục 8.2 và báo cáo mục 3.1.
 
 | Task | Người nghiệm thu | Ngày | D1 | D2 | D3 | D4 | Kết luận | Ghi chú / link PR |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Nhóm (theo phân công: B) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 2 | Nhóm (theo phân công: D) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 3 | Nhóm (theo phân công: E) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 4 | Nhóm (theo phân công: C) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 5 | Nhóm (theo phân công: B) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 6 | Nhóm (theo phân công: D) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 7 | Nhóm (theo phân công: E) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 8 | Nhóm (theo phân công: B) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 9 | Nhóm (theo phân công: C) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
-| 10 | Nhóm (theo phân công: E) | 23/10 | Đạt | Đạt | Đạt | Đạt | Đạt | Nhóm đã kiểm tra, A xác nhận |
+| 1 | Hồ Thiên Ngân | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 2 | Giản Thiên Lực | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 3 | Nguyễn Lê Nhựt Thắng | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 4 | Nguyễn Lê Nhựt Thắng | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 5 | Nguyễn Lê Nhựt Thắng | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 6 | Nguyễn Lê Nhựt Thắng | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 7 | Hồ Thiên Ngân | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 8 | Hà Thiên Long | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 9 | Nguyễn Lê Nhựt Thắng | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
+| 10 | Nguyễn Lê Nhựt Thắng (10b, 10c); Hà Thiên Long (10a, 10d) | 23/10 | Đạt | Xác nhận nhóm\* | Đạt | Đạt | Đạt | Chạy Docker, đạt |
 
-Điền "Đạt" hoặc "Chưa đạt" cho từng cột D1 đến D4. Kết luận "Đạt" khi cả 4 cột đều đạt.
+Điền "Đạt" hoặc "Chưa đạt" cho từng cột D1 đến D4. Kết luận "Đạt" khi cả 4 cột đều đạt (riêng D2 xem chú thích bên dưới).
+
+\* D2 (commit rõ ràng, được review): ghi theo hiện trạng GitHub ngày 31/10/2026, các Pull Request của Assignment 1 chưa có Approve hoặc comment review; kết luận "Đạt" dựa trên nghiệm thu chéo bằng cách chạy Docker ngày 23/10/2026.
 
 ## 7. Tiến trình
 
 | Mốc | Việc | Người làm |
 |---|---|---|
-| Sáng 23/10 | A mở Pull Request, gửi bảng phân công vào nhóm chat | A |
-| 23/10 đến trưa 24/10 | Mỗi người nghiệm thu task của mình, Approve PR, ghi kết quả | B, C, D, E |
-| Chiều 24/10 | A tổng hợp, cập nhật README mục 8.2 và báo cáo mục 6.4 | A |
+| Sáng 23/10 | Nguyễn Lê Nhựt Thắng gửi bảng phân công nghiệm thu vào nhóm chat Zalo | Nguyễn Lê Nhựt Thắng |
+| Tối 23/10 (họp Sprint Planning 3) | Nghiệm thu chéo bằng cách chạy Docker, ghi kết quả vào mục 6 | Cả nhóm |
+| 24/10 | Nguyễn Lê Nhựt Thắng tổng hợp, cập nhật README mục 8.2 và báo cáo mục 3.1 | Nguyễn Lê Nhựt Thắng |
 | Tối 24/10 | Mốc cắt phạm vi: task chưa đạt thì sửa hoặc đưa vào backlog | Cả nhóm |
-| 25/10 | Sprint 3 Review và Retrospective, đóng băng code tối | Cả nhóm |
+| 25/10 | Sprint 3 Review và Retrospective | Cả nhóm |
 
-**Ghi chú:** kết quả trên do A tổng hợp theo xác nhận của nhóm ngày 23/10/2026. Nếu cá nhân từng người nghiệm thu, bổ sung tên và Approve trên Pull Request tương ứng.
+**Ghi chú:** kết quả trên do Nguyễn Lê Nhựt Thắng tổng hợp sau buổi nghiệm thu chéo ngày 23/10/2026.

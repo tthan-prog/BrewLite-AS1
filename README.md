@@ -2,19 +2,22 @@
 
 Ứng dụng đặt cà phê không dùng tiền mặt: khách xem menu, chọn size và topping, thêm vào giỏ, đăng nhập, thanh toán (mô phỏng) và theo dõi đơn hàng; nhân viên (STAFF) xử lý đơn qua API.
 
-Bài tập lớn môn **Công nghệ Phần mềm**, Trường Đại học Sài Gòn, học kỳ I năm học 2026–2027, làm theo quy trình **Agile Scrum**. Hạn nộp: 27/10/2026.
+Bài tập lớn môn **Công nghệ Phần mềm**, Trường Đại học Sài Gòn, học kỳ I năm học 2026–2027, làm theo quy trình **Agile Scrum**. Hạn nộp: 15/11/2026.
 
-## Trạng thái dự án (cập nhật 23/10/2026)
+> Đây là repository riêng của **Assignment 1**. Assignment 2 được thực hiện ở một repository khác, không dùng chung mã nguồn hay tài liệu với repository này.
+
+## Trạng thái dự án (cập nhật 13/11/2026)
 
 | Hạng mục | Tình trạng |
 |---|---|
 | Assignment 1 (10 task) | **Hoàn thành code cả 10 task**, chạy đầu-cuối từ giao diện đến CSDL |
-| Kiểm thử | 22 unit test và 32 test tích hợp đạt (PostgreSQL thật); lint và build backend, frontend sạch |
+| Kiểm thử | 22 unit test và 32 test tích hợp đạt (PostgreSQL thật); chạy lại ngày 13/11/2026 trên tag `assign1-final`: 22/22, 32/32 |
 | Docker Compose | Chạy được 3 dịch vụ (db, backend, frontend); đã chạy thử trên Windows (Docker Desktop + WSL 2) |
 | Nghiệm thu chéo (điều kiện tính điểm) | **Đã nghiệm thu, cả 10 task đạt DoD** (xác nhận 23/10/2026, xem `docs/scrum/dod-nghiem-thu.md`) |
 | Bằng chứng Scrum | Product Backlog, 3 Sprint Backlog, Burndown, biên bản (`docs/scrum/`) |
-| Báo cáo | `docs/report/BrewLite_BaoCao.docx`; còn chèn ảnh và điền MSSV |
-| Sprint 3 Review và Retrospective | Dự kiến 25/10/2026; đã soạn bản nháp biên bản |
+| Báo cáo | LaTeX tại `docs/report/` (cách biên dịch trong `docs/report/README.md`) |
+| Sprint 3 Review và Retrospective | Đã họp 25/10/2026 (`docs/scrum/minutes/06-sprint3-review-retro.md`) |
+| Mốc mã nguồn | Tag `assign1-original` (`e7a627a`, 23/10/2026); tag `assign1-final` (`9581384`, 07/11/2026: thêm `frontend/public/.gitkeep` để `docker compose build` chạy trên bản clone sạch) |
 
 Chi tiết từng task ở [Mục 8](#8-api-và-tiến-độ-task).
 
@@ -135,7 +138,7 @@ brewlite/
 │   ├── message-to-lecturer.md     # bản nháp tin nhắn hỏi giảng viên
 │   ├── scrum/                     # backlog, burndown, minutes/
 │   ├── design/                    # ERD
-│   └── report/                    # báo cáo (BrewLite_BaoCao.docx)
+│   └── report/                    # báo cáo LaTeX (main.tex, figures/)
 ├── docker-compose.yml
 ├── .env.example
 ├── .nvmrc
@@ -291,16 +294,16 @@ Mọi route (trừ `/`, `/health`, `/products*`, `/toppings`, `/auth/register`, 
 
 | # | Task | Sprint | Người làm chính | Trạng thái | Nghiệm thu chéo |
 |---|---|---|---|---|---|
-| 1 | Khởi tạo dự án | 1 | A | Xong | Đạt |
-| 2 | API danh sách sản phẩm | 1 | C (B: schema, seed) | Xong | Đạt |
-| 3 | Trang Menu | 1 | D | Xong (gọi API; loading, lỗi, rỗng) | Đạt |
-| 4 | Chi tiết, size, topping | 1 | D | Xong (giá do server tính lại) | Đạt |
-| 5 | Giỏ hàng | 2 | D | Xong (thêm, sửa, xóa, tổng tiền, badge) | Đạt |
-| 6 | API tạo đơn | 2 | B | Xong (JWT, validate, PENDING) | Đạt |
-| 7 | Đăng ký, đăng nhập | 2 | C | Xong (bcrypt, JWT, guard, trang `/login`, `/register`) | Đạt |
-| 8 | Thanh toán không tiền mặt | 3 | C | Xong (Ví/Thẻ mô phỏng, PAID/PAYMENT_FAILED, thử lại) | Đạt |
-| 9 | Xác nhận, lịch sử đơn, bàn giao | 3 | E | Xong (`/orders/me`, trang xác nhận, Docker, README) | Đạt |
-| 10 | Nghiệp vụ nâng cao | 3 | B, C | Xong (state machine, idempotency, tồn kho, khuyến mãi, điểm; test a, b, c) | Đạt |
+| 1 | Khởi tạo dự án | 1 | Nguyễn Lê Nhựt Thắng | Xong | Đạt |
+| 2 | API danh sách sản phẩm | 1 | Nguyễn Lê Nhựt Thắng (API); Hồ Thiên Ngân (schema, seed) | Xong | Đạt |
+| 3 | Trang Menu | 1 | Giản Thiên Lực | Xong (gọi API; loading, lỗi, rỗng) | Đạt |
+| 4 | Chi tiết, size, topping | 1 | Giản Thiên Lực | Xong (giá do server tính lại) | Đạt |
+| 5 | Giỏ hàng | 2 | Giản Thiên Lực | Xong (thêm, sửa, xóa, tổng tiền, badge) | Đạt |
+| 6 | API tạo đơn | 2 | Hồ Thiên Ngân | Xong (JWT, validate, PENDING) | Đạt |
+| 7 | Đăng ký, đăng nhập | 2 | Nguyễn Lê Nhựt Thắng (backend); Hà Thiên Long (giao diện) | Xong (bcrypt, JWT, guard, trang `/login`, `/register`) | Đạt |
+| 8 | Thanh toán không tiền mặt | 3 | Nguyễn Lê Nhựt Thắng | Xong (Ví/Thẻ mô phỏng, PAID/PAYMENT_FAILED, thử lại) | Đạt |
+| 9 | Xác nhận, lịch sử đơn, bàn giao | 3 | Hà Thiên Long (giao diện); Nguyễn Lê Nhựt Thắng (API, Docker, README) | Xong (`/orders/me`, trang xác nhận, Docker, README) | Đạt |
+| 10 | Nghiệp vụ nâng cao | 3 | Hồ Thiên Ngân (10b, 10c); Nguyễn Lê Nhựt Thắng (10a, 10d) | Xong (state machine, idempotency, tồn kho, khuyến mãi, điểm; test a, b, c) | Đạt |
 
 **Giới hạn đã biết:** thanh toán chỉ mô phỏng; không có giao diện barista; trường đường/đá trong giỏ chỉ hiển thị, chưa lưu vào đơn; migration của các bảng bổ sung viết tay, cần đối chiếu với Prisma khi đổi môi trường.
 
@@ -399,7 +402,8 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | Mẫu biên bản | `docs/scrum/meeting-minutes-template.md`, `retrospective-template.md` |
 | Thỏa thuận nhóm | `docs/team-agreement.md` |
 | ERD | `docs/design/ERD_MemberB/` |
-| Báo cáo | `docs/report/BrewLite_BaoCao.docx` |
+| Phân công, tiến độ, đóng góp | `docs/phan-cong.md`, `docs/tien-do.md`, `docs/bang-dong-gop.md` |
+| Báo cáo | `docs/report/main.tex` (LaTeX) |
 
 **Nhịp Sprint:**
 
@@ -408,8 +412,8 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | 1 | 14–18/10 | 1, 2, 3, 4 | Xong Task 1; còn 9/11 điểm |
 | 2 | 19–22/10 | 5, 6, 7 + tồn | Còn 8/22 điểm |
 | 3 | 23–25/10 | 8, 9, 10 + tồn | Hoàn thành, đạt DoD; Review ngày 25/10 |
-| Hoàn thiện | 26/10 | Rà DoD, tập demo | – |
-| Nộp | 27/10 | – | – |
+| Hoàn thiện | 26/10 – 13/11 | Rà DoD, báo cáo LaTeX, tập demo | – |
+| Nộp | 15/11 | – | – |
 
 ---
 
@@ -435,14 +439,13 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 
 | Ký hiệu | Họ tên | MSSV | Vai trò |
 |---|---|---|---|
-| A | Nguyễn Lê Nhựt Thắng | | Scrum Master, Dev nền tảng |
-| B | Hồ Thiên Ngân | | Dev backend (dữ liệu, đơn hàng, nghiệp vụ lõi) |
-| C | Hà Thiên Long | | Dev backend (xác thực, thanh toán, state machine) |
-| D | Giản Thiên Lực | | Dev frontend, slide |
-| E | Lê Thuận | | Dev frontend, kiểm thử, Product Owner tạm |
+| A | Nguyễn Lê Nhựt Thắng | 3124560085 | Scrum Master, nền tảng, backend |
+| B | Hồ Thiên Ngân | 3124410224 | Backend: dữ liệu, đơn hàng |
+| C | Hà Thiên Long | 3124410193 | Frontend, kiểm thử, Product Owner tạm |
+| D | Giản Thiên Lực | 3124410206 | Frontend |
 
-**Giảng viên hướng dẫn:** Từ Lãng Phiêu
+**Giảng viên hướng dẫn:** Từ Lăng Phiêu
 
 ---
 
-*README phiên bản 2.0, viết lại ngày 23/10/2026 sau khi hoàn thành code Assignment 1. Cập nhật khi có thay đổi về cài đặt, cách chạy hoặc trạng thái nghiệm thu.*
+*README phiên bản 2.1: viết lại ngày 23/10/2026 sau khi hoàn thành code Assignment 1; ngày 13/11/2026 cập nhật hạn nộp, báo cáo LaTeX, thành viên và tách repository riêng. Cập nhật khi có thay đổi về cài đặt, cách chạy hoặc trạng thái nghiệm thu.*
