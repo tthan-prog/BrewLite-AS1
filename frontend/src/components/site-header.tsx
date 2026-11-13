@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
+import { useCart } from "@/lib/cart";
 
 // Đọc phiên đăng nhập từ sessionStorage; trên server luôn là "chưa đăng nhập".
 function subscribe(callback: () => void) {
@@ -32,6 +33,7 @@ function displayName(raw: string): string {
 
 export default function SiteHeader() {
   const rawUser = useAuthState();
+  const { count } = useCart();
 
   function logout() {
     sessionStorage.removeItem("brewlite_token");
@@ -52,6 +54,9 @@ export default function SiteHeader() {
           <Link href="/orders/history">Đơn hàng của tôi</Link>
         </nav>
         <div className="nav-actions">
+          <Link className="btn btn-outline nav-cart" href="/menu#cart" aria-label={`Giỏ hàng, ${count} món`}>
+            Giỏ hàng <span className="cart-badge">{count}</span>
+          </Link>
           {rawUser ? (
             <>
               <span className="nav-user">{displayName(rawUser)}</span>
