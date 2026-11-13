@@ -1,16 +1,22 @@
 erDiagram
     USER ||--o{ ORDER : places
+    USER ||--o{ PAYMENT : pays
+    USER ||--o{ IDEMPOTENCY_RECORD : sends
     ORDER ||--|{ ORDER_ITEM : contains
+    ORDER ||--o{ PAYMENT : paid_by
+    ORDER ||--o| IDEMPOTENCY_RECORD : created_by
     PRODUCT ||--o{ ORDER_ITEM : included_in
     ORDER_ITEM ||--o{ ORDER_ITEM_TOPPING : has
     TOPPING ||--o{ ORDER_ITEM_TOPPING : selected_in
-    PROMOTION ||--o{ ORDER : applied_to
+    PROMOTION |o..o{ ORDER : "promoCode"
 
     USER {
         int id PK
-        string email
-        string password
-        string role
+        string email UK
+        string name
+        string password "bcrypt"
+        enum role "CUSTOMER | STAFF"
+        int points
         datetime createdAt
         datetime updatedAt
     }
@@ -21,6 +27,8 @@ erDiagram
         string description
         int price
         int stock
+        string category
+        string imageUrl
         datetime createdAt
         datetime updatedAt
     }
@@ -34,7 +42,7 @@ erDiagram
     ORDER {
         int id PK
         int userId FK
-        string status
+        enum status "PENDING | PAID | PAYMENT_FAILED | PREPARING | READY | COMPLETED | CANCELLED"
         int subtotal
         int discount
         string promoCode
@@ -48,8 +56,10 @@ erDiagram
         int orderId FK
         int productId FK
         int quantity
-        int unitPrice
-        string size
+        int unitPrice "giá gốc + phụ thu size"
+        string size "S | M | L"
+        int sugar "0 | 30 | 50 | 70 | 100 (%)"
+        int ice "0 | 30 | 50 | 70 | 100 (%)"
     }
 
     ORDER_ITEM_TOPPING {
@@ -61,10 +71,31 @@ erDiagram
 
     PROMOTION {
         int id PK
-        string code
-        string type
+        string code UK
+        enum type "PERCENT | FIXED"
         int value
         int minOrder
         datetime expiresAt
         int usageCount
+    }
+
+    IDEMPOTENCY_RECORD {
+        int id PK
+        int userId FK
+        string key "UK (userId, key)"
+        string requestHash
+        int orderId FK, UK
+        datetime createdAt
+    }
+
+    PAYMENT {
+        int id PK
+        int orderId FK
+        int userId FK
+        enum method "WALLET | CARD"
+        enum status "SUCCESS | FAILED"
+        int amount
+        string idempotencyKey "UK (userId, idempotencyKey)"
+        string requestHash
+        datetime createdAt
     }

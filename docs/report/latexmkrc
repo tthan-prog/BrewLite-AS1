@@ -1,0 +1,3 @@
+# Biên dịch bằng pdfLaTeX (gói vntex). Chạy: latexmk main.tex
+$pdf_mode = 1;
+$pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';

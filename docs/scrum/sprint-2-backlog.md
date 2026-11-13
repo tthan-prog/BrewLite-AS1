@@ -2,8 +2,8 @@
 
 - **Thời gian:** 19/10 – 22/10/2026
 - **Sprint Goal:** Người dùng xem menu, quản lý giỏ hàng và tạo đơn; có đăng nhập (Task 5, 6, 7) và hoàn tất phần tồn từ Sprint 1 (Task 2, 3, 4).
-- **Daily Scrum:** hằng ngày 21:00 qua nhóm chat.
-- **Sprint Review và Retrospective:** 22/10/2026, 21:30 (xem `minutes/04-sprint2-review-retro.md`).
+- **Daily Scrum:** hằng ngày 20:00 qua nhóm chat.
+- **Sprint Review và Retrospective:** 22/10/2026, 20:00 (xem `minutes/04-sprint2-review-retro.md`).
 - **Tổng điểm:** 22 điểm = 13 điểm mới (T5 = 3, T6 = 5, T7 = 5) + 9 điểm tồn từ Sprint 1 (T2, T3, T4).
 
 ## Việc trong Sprint
@@ -13,9 +13,9 @@
 | 1 | Prisma schema, migration, seed | 2 | B | 3 | Hoàn thành (21/10) | Commit "setup Prisma database and seed" |
 | 2 | Trang Menu, trang chi tiết (size, topping) | 3, 4 | D | 6 | Hoàn thành giao diện (22/10) | Commit "add BrewLite menu cart checkout and order history" |
 | 3 | Giỏ hàng: thêm, sửa, xóa, tổng tiền, badge | 5 | D | 3 | Hoàn thành giao diện (22/10) | Cùng commit trên |
-| 4 | `POST /orders`: validate, trạng thái PENDING | 6 | B (C) | 5 | Hoàn thành (22/10) | Có idempotency và kiểm soát tồn kho đồng thời |
-| 5 | Đăng ký, đăng nhập, JWT, guard | 7 | C (E) | 5 | Một phần | Giao diện đăng nhập xong 22/10; backend auth chuyển sang Sprint 3 |
-| 6 | `GET /products` nối menu với dữ liệu thật | 2 | C | (đã tính ở T2) | Chưa xong | Chuyển sang Sprint 3 |
+| 4 | `POST /orders`: validate, trạng thái PENDING | 6 | B (A) | 5 | Hoàn thành (22/10) | Có idempotency và kiểm soát tồn kho đồng thời |
+| 5 | Đăng ký, đăng nhập, JWT, guard | 7 | A (C) | 5 | Một phần | Giao diện đăng nhập xong 22/10; backend auth chuyển sang Sprint 3 |
+| 6 | `GET /products` nối menu với dữ liệu thật | 2 | A | (đã tính ở T2) | Chưa xong | Chuyển sang Sprint 3 |
 
 ## Rủi ro và vướng mắc
 

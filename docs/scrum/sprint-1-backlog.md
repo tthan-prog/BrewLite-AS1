@@ -1,9 +1,9 @@
 # Sprint 1 Backlog
 
-- **Thời gian:** 14/10 – 18/10/2026 (nộp 27/10/2026)
+- **Thời gian:** 14/10 – 18/10/2026
 - **Sprint Goal:** Nền tảng dự án chạy được; có dữ liệu mẫu và menu hiển thị được (Task 1, 2, 3, 4).
-- **Daily Scrum:** hằng ngày 21:00, tối đa 15 phút, qua nhóm chat.
-- **Sprint Review và Retrospective:** 18/10/2026, 21:00 (xem `minutes/02-sprint1-review-retro.md`).
+- **Daily Scrum:** hằng ngày 20:00, tối đa 15 phút, qua nhóm chat.
+- **Sprint Review và Retrospective:** 18/10/2026, 20:00 (xem `minutes/02-sprint1-review-retro.md`).
 - **Tổng điểm cam kết:** 11 điểm (T1 = 2, T2 = 3, T3 = 3, T4 = 3).
 
 ## Việc trong Sprint
@@ -12,10 +12,10 @@
 |---|---|---|---|---|---|---|
 | 1 | Khởi tạo dự án, cấu trúc, README, `.env.example` | 1 | A | 2 | Hoàn thành (13/10) | Commit "Initial commit" 13/10 |
 | 2 | Prisma schema, migration, seed (sản phẩm, topping, user, mã khuyến mãi) | 2 | B (A) | 3 | Một phần | Schema và seed xong 21/10 (B); chuyển sang Sprint 2 |
-| 3 | `GET /products`, `GET /products/:id` | 2 | C | 3 (gộp Task 2) | Chưa làm | Chuyển sang Sprint 2, phụ thuộc seed |
+| 3 | `GET /products`, `GET /products/:id` | 2 | A | 3 (gộp Task 2) | Chưa làm | Chuyển sang Sprint 2, phụ thuộc seed |
 | 4 | Trang Menu: lưới, loading, trạng thái rỗng | 3 | D | 3 | Chưa làm | Chuyển sang Sprint 2 |
-| 5 | Trang chi tiết: size, topping, tính giá | 4 | D (C, E) | 3 | Chưa làm | Chuyển sang Sprint 2 |
-| 6 | Báo cáo: Product Vision, FR/NFR, user story | – | E | – | Đang làm | Bản nháp chương 1 và 3 |
+| 5 | Trang chi tiết: size, topping, tính giá | 4 | D (A, C) | 3 | Chưa làm | Chuyển sang Sprint 2 |
+| 6 | Báo cáo: Product Vision, FR/NFR, user story | – | C | – | Đang làm | Bản nháp chương 1 và 3 |
 | 7 | Cập nhật Burndown, ghi biên bản | – | A | – | Đang làm | Hằng ngày |
 
 ## Rủi ro và vướng mắc
@@ -28,6 +28,6 @@
 
 ## Kết quả Sprint
 
-- Task hoàn thành đạt DoD: Task 1 (2/11 điểm).
+- Task hoàn thành đạt DoD: Task 1 (2 trên 11 điểm).
 - Task chưa hoàn thành và lý do: Task 2, 3, 4 (9 điểm) do ERD chốt muộn, việc song song giữa các vai trò chưa bắt đầu đúng hạn.
 - Increment demo được: khung frontend/backend chạy được, README hướng dẫn cài đặt.
