@@ -54,7 +54,7 @@ export default function SiteHeader() {
           <Link href="/orders/history">Đơn hàng của tôi</Link>
         </nav>
         <div className="nav-actions">
-          <Link className="btn btn-outline nav-cart" href="/menu#cart" aria-label={`Giỏ hàng, ${count} món`}>
+          <Link className="btn btn-outline nav-cart" href="/cart" aria-label={`Giỏ hàng, ${count} món`}>
             Giỏ hàng <span className="cart-badge">{count}</span>
           </Link>
           {rawUser ? (

@@ -48,6 +48,8 @@ export function itemUnitPrice(item: Pick<CartItem, "product" | "size" | "topping
 }
 
 type CartContextValue = {
+  /** false cho tới khi đọc xong giỏ đã lưu trong localStorage. */
+  ready: boolean;
   items: CartItem[];
   count: number;
   subtotal: number;
@@ -123,6 +125,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo<CartContextValue>(
     () => ({
+      ready: loaded,
       items,
       count: items.reduce((sum, item) => sum + item.quantity, 0),
       subtotal: items.reduce((sum, item) => sum + itemUnitPrice(item) * item.quantity, 0),
@@ -135,7 +138,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       remove,
       clear,
     }),
-    [items, add, changeQuantity, remove, clear],
+    [loaded, items, add, changeQuantity, remove, clear],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

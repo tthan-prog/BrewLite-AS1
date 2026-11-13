@@ -1020,3 +1020,18 @@
   color: var(--coffee);
   font-weight: 700;
 }
+
+.brew-notice-link {
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 6px;
+}
+
+a.brew-back {
+  display: inline-block;
+  text-decoration: none;
+}
+
+a.brew-primary {
+  text-decoration: none;
+}
