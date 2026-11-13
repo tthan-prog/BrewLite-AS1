@@ -447,7 +447,7 @@ Hoặc Import 2 file vào Postman rồi **Run collection**. Kịch bản chi ti�
 | 1 | 14–18/10 | 1, 2, 3, 4 | Xong Task 1; còn 9/11 điểm |
 | 2 | 19–22/10 | 5, 6, 7 + tồn | Còn 8/22 điểm |
 | 3 | 23–25/10 | 8, 9, 10 + tồn | Hoàn thành, đạt DoD; Review ngày 25/10 |
-| Hoàn thiện | 26/10 – 13/11 | Thử lại toàn bộ luồng như khách hàng, hoàn thiện giao diện và luồng đặt hàng, báo cáo LaTeX | Hoàn thành |
+| Hoàn thiện | 26/10 – 14/11 | Thử lại toàn bộ luồng như khách hàng, hoàn thiện giao diện và luồng đặt hàng, báo cáo LaTeX | Hoàn thành |
 | Nộp | 15/11 | – | – |
 
 ---
@@ -480,7 +480,7 @@ Hoặc Import 2 file vào Postman rồi **Run collection**. Kịch bản chi ti�
 | C | Hà Thiên Long | 3124410193 | Frontend, kiểm thử, Product Owner tạm |
 | D | Giản Thiên Lực | 3124410206 | Frontend |
 
-**Giảng viên hướng dẫn:** Từ Lăng Phiêu
+**Giảng viên hướng dẫn:** Từ Lãng Phiêu
 
 ---
 
