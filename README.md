@@ -1,26 +1,20 @@
 # BrewLite
 
-Ứng dụng đặt cà phê không dùng tiền mặt: khách xem menu, chọn size và topping, thêm vào giỏ, đăng nhập, thanh toán (mô phỏng) và theo dõi đơn hàng; nhân viên (STAFF) xử lý đơn qua API.
+Ứng dụng web đặt đồ uống không dùng tiền mặt: khách xem thực đơn, chọn size, mức đường, mức đá và topping, thêm vào giỏ, đăng nhập, đặt đơn, thanh toán (mô phỏng Ví/Thẻ) và theo dõi đơn hàng; nhân viên (STAFF) xử lý đơn qua API.
 
-Bài tập lớn môn **Công nghệ Phần mềm**, Trường Đại học Sài Gòn, học kỳ I năm học 2026–2027, làm theo quy trình **Agile Scrum**. Hạn nộp: 15/11/2026.
+Bài tập lớn 1 (giữa kì) môn **Công nghệ Phần mềm**, Trường Đại học Sài Gòn, học kỳ I năm học 2026–2027, làm theo quy trình **Agile Scrum**. Hạn nộp: 15/11/2026.
 
-> 
-
-## Trạng thái dự án (cập nhật 13/11/2026)
+## Trạng thái dự án
 
 | Hạng mục | Tình trạng |
 |---|---|
-| Assignment 1 (10 task) | **Hoàn thành code cả 10 task**, chạy đầu-cuối từ giao diện đến CSDL |
-| Kiểm thử | Nhánh `main` (sau rà soát 13/11/2026): 22 unit test và **33** test tích hợp đạt (PostgreSQL thật). Tại tag `assign1-final`: 22/22, 32/32 (chạy lại 13/11) |
-| Docker Compose | Chạy được 3 dịch vụ (db, backend, frontend); đã chạy thử trên Windows (Docker Desktop + WSL 2) |
-| Nghiệm thu chéo (điều kiện tính điểm) | **Đã nghiệm thu, cả 10 task đạt DoD** (xác nhận 23/10/2026, xem `docs/scrum/dod-nghiem-thu.md`) |
-| Bằng chứng Scrum | Product Backlog, 3 Sprint Backlog, Burndown, biên bản (`docs/scrum/`) |
-| Báo cáo | LaTeX tại `docs/report/` (cách biên dịch trong `docs/report/README.md`) |
-| Sprint 3 Review và Retrospective | Đã họp 25/10/2026 (`docs/scrum/minutes/06-sprint3-review-retro.md`) |
-| Mốc mã nguồn | Tag `assign1-original` (`e7a627a`, 23/10/2026); tag `assign1-final` (`9581384`, 07/11/2026: thêm `frontend/public/.gitkeep` để `docker compose build` chạy trên bản clone sạch) |
-| Rà soát và hoàn thiện | 13/11/2026, nhánh `fix/as1-review` gộp vào `main`: xem [Mục 8.3](#83-rà-soát-và-hoàn-thiện-ngày-13112026) |
+| 10 task | Hoàn thành, chạy đầu-cuối từ giao diện đến CSDL; cả 10 task đạt Definition of Done qua nghiệm thu chéo (`docs/scrum/dod-nghiem-thu.md`) |
+| Kiểm thử | 22 unit test và 33 test tích hợp (PostgreSQL thật) đạt; lint và build backend, frontend đạt |
+| Docker Compose | Chạy đủ 3 dịch vụ (db, backend, frontend); đã chạy trên Windows (Docker Desktop + WSL 2) |
+| Bằng chứng Scrum | Product Backlog, 3 Sprint Backlog, Burndown, 6 biên bản (`docs/scrum/`) |
+| Báo cáo | LaTeX tại `docs/report/` |
 
-Chi tiết từng task ở [Mục 8](#8-api-và-tiến-độ-task).
+Chi tiết từng task ở [Mục 8](#8-api-giao-diện-và-tiến-độ-task).
 
 ---
 
@@ -33,7 +27,7 @@ Chi tiết từng task ở [Mục 8](#8-api-và-tiến-độ-task).
 5. [Cấu trúc thư mục](#5-cấu-trúc-thư-mục)
 6. [Cài đặt và chạy](#6-cài-đặt-và-chạy)
 7. [Biến môi trường](#7-biến-môi-trường)
-8. [API và tiến độ task](#8-api-và-tiến-độ-task)
+8. [API, giao diện và tiến độ task](#8-api-giao-diện-và-tiến-độ-task)
 9. [Nghiệp vụ đơn hàng](#9-nghiệp-vụ-đơn-hàng)
 10. [Kiểm thử và chất lượng code](#10-kiểm-thử-và-chất-lượng-code)
 11. [Quy ước làm việc nhóm](#11-quy-ước-làm-việc-nhóm)
@@ -50,13 +44,25 @@ Chi tiết từng task ở [Mục 8](#8-api-và-tiến-độ-task).
 **Luồng chính:**
 
 ```
-Xem menu → Chọn sản phẩm (size, topping) → Thêm vào giỏ → Xem giỏ, nhập mã khuyến mãi
-        → Đăng nhập → Thanh toán (Ví/Thẻ mô phỏng) → Xác nhận đơn → Xem lịch sử đơn
+Xem thực đơn → Chọn món (size, đường, đá, topping) → Thêm vào giỏ → Xem giỏ hàng
+   → Đăng nhập (nếu chưa) → Đặt đơn, nhập mã khuyến mãi → Xem tổng tiền → Thanh toán (Ví/Thẻ mô phỏng)
+   → Xác nhận đơn → Xem lịch sử đơn
 ```
 
-**Đã làm:** menu từ API, chi tiết sản phẩm, giỏ hàng, đăng ký và đăng nhập (JWT, phân quyền CUSTOMER/STAFF), tạo đơn, thanh toán mô phỏng, xác nhận và lịch sử đơn, máy trạng thái đơn hàng, Idempotency-Key, kiểm soát tồn kho đồng thời, mã khuyến mãi, điểm thưởng.
+**Chức năng:**
 
-**Ngoài phạm vi:** giao diện cho barista (STAFF thao tác qua API), cổng thanh toán thật, quản lý kho nguyên liệu, quên mật khẩu, hồ sơ cá nhân.
+| Nhóm | Chức năng |
+|---|---|
+| Thực đơn | Danh sách đồ uống từ API, lọc theo nhóm, tìm kiếm; báo "Hết hàng", "Còn N ly"; trạng thái đang tải, rỗng, lỗi |
+| Chi tiết món | Chọn size S/M/L, mức đường, mức đá, topping, số lượng; giá cập nhật ngay |
+| Giỏ hàng | Thêm, sửa số lượng, xóa; tổng tiền; số món trên nút Giỏ hàng; lưu trong React Context và localStorage nên không mất khi chuyển trang, đăng nhập hoặc tải lại |
+| Tài khoản | Đăng ký, đăng nhập (JWT); đăng nhập xong quay lại đúng bước đang làm; phân quyền CUSTOMER/STAFF |
+| Đặt đơn và thanh toán | Bước 1 đặt đơn: máy chủ kiểm tra tồn kho, mã khuyến mãi, tính tạm tính, giảm giá, tổng tiền. Bước 2 thanh toán Ví/Thẻ mô phỏng; lỗi thì giữ giỏ và thử lại trên cùng đơn |
+| Đơn hàng | Trang xác nhận có từng món, size, đường, đá, topping, giảm giá, tổng; lịch sử đơn của tài khoản |
+| Nghiệp vụ backend | Máy trạng thái đơn hàng, Idempotency-Key, kiểm soát tồn kho đồng thời, mã khuyến mãi, điểm thưởng |
+| Giao diện | Mobile-first: trên điện thoại có thanh tab cố định ở đáy (Thực đơn, Giỏ hàng, Đơn hàng); thông báo lỗi bằng tiếng Việt |
+
+**Ngoài phạm vi:** giao diện cho barista (STAFF thao tác qua API), cổng thanh toán thật, quản lý kho nguyên liệu, quên mật khẩu, hồ sơ cá nhân, khách tự hủy đơn.
 
 ---
 
@@ -105,12 +111,12 @@ Một số gói của NestJS CLI yêu cầu `node: ^22.22.3 || ^24.15.0 || >=26.
 |---|---|---|
 | Mã nguồn | Git, GitHub | Mỗi chức năng một nhánh, gộp qua Pull Request vào `main` |
 | Liên lạc | Nhóm chat | Daily Scrum, đăng biên bản |
-| Tài liệu | Google Drive, thư mục `docs/` | Báo cáo, slide, bản nháp |
+| Tài liệu | Thư mục `docs/` | Báo cáo LaTeX, tài liệu Scrum |
 | Sơ đồ | Mermaid, draw.io | ERD (`docs/design/ERD_MemberB`), state machine |
 | Chạy và đóng gói | Docker Compose | `docker compose up --build` |
 | Kiểm thử | Vitest, Supertest | Unit, e2e, test bắt buộc Task 10 |
 
-Phạm vi chạy: bằng docker-compose trên máy cá nhân để demo
+Phạm vi chạy: bằng Docker Compose trên máy cá nhân để demo.
 
 ---
 
@@ -133,10 +139,14 @@ brewlite/
 │   ├── Dockerfile
 │   └── package.json
 ├── frontend/                      # Next.js (App Router)
-│   └── src/app/                   # menu, cart, checkout, login, register, orders/confirmation, orders/history
+│   └── src/
+│       ├── app/                   # các trang (xem Mục 8.2)
+│       ├── components/            # thanh điều hướng, chân trang
+│       └── lib/                   # gọi API, giỏ hàng (Context), phiên đăng nhập
 ├── docs/
 │   ├── team-agreement.md          # thỏa thuận nhóm
-│   ├── message-to-lecturer.md     # bản nháp tin nhắn 
+│   ├── phan-cong.md, tien-do.md, bang-dong-gop.md
+│   ├── message-to-lecturer.md     # tin nhắn nộp bài
 │   ├── scrum/                     # backlog, burndown, minutes/
 │   ├── design/                    # ERD
 │   └── report/                    # báo cáo LaTeX (main.tex, figures/)
@@ -153,8 +163,8 @@ brewlite/
 ### 6.1. Lấy mã nguồn
 
 ```bash
-git clone https://github.com/tthan-prog/BrewLite.git
-cd BrewLite
+git clone https://github.com/tthan-prog/BrewLite-AS1.git
+cd BrewLite-AS1
 nvm use            # nếu dùng nvm
 ```
 
@@ -183,7 +193,7 @@ docker compose exec backend npx prisma db seed --config prisma7.config.ts
 
 **Sau khi chạy:**
 
-- Frontend: http://localhost:3000 (menu ở `/menu`)
+- Frontend: http://localhost:3000 (thực đơn ở `/menu`)
 - Backend: http://localhost:3001 (kiểm tra `/health`)
 - PostgreSQL: `localhost:5432`
 
@@ -265,9 +275,9 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 ---
 
-## 8. API và tiến độ task
+## 8. API, giao diện và tiến độ task
 
-### 8.1. API
+### 8.1. API backend
 
 Mọi route (trừ `/`, `/health`, `/products*`, `/toppings`, `/auth/register`, `/auth/login`) cần header `Authorization: Bearer <JWT>`. Test tích hợp `backend/test/assign1.e2e-spec.ts` kiểm tra từng dòng dưới đây.
 
@@ -280,16 +290,28 @@ Mọi route (trừ `/`, `/health`, `/products*`, `/toppings`, `/auth/register`, 
 | POST | `/auth/register` | Đăng ký (bcrypt; luôn tạo CUSTOMER) | công khai | 7 |
 | POST | `/auth/login` | Đăng nhập, trả `accessToken` | công khai | 7 |
 | GET | `/auth/me` | Thông tin người dùng hiện tại | đăng nhập | 7 |
-| POST | `/orders` | Tạo đơn PENDING; bắt buộc `Idempotency-Key`; giá theo size S/M/L (+0/+5.000/+10.000đ) và topping; trừ kho có điều kiện; mã khuyến mãi; `userId` lấy từ JWT | đăng nhập | 6, 10 |
-| GET | `/orders/me` | Lịch sử đơn của tôi | đăng nhập | 9 |
-| GET | `/orders/:id` | Chi tiết đơn (chủ đơn hoặc STAFF) | đăng nhập | 9 |
+| POST | `/orders` | Tạo đơn PENDING; bắt buộc `Idempotency-Key`; mỗi món gồm size S/M/L (+0/+5.000/+10.000đ), mức đường, mức đá (0/30/50/70/100%, mặc định 100) và topping; trừ kho có điều kiện; mã khuyến mãi; `userId` lấy từ JWT | đăng nhập | 6, 10 |
+| GET | `/orders/me` | Lịch sử đơn của tôi, kèm danh sách món | đăng nhập | 9 |
+| GET | `/orders/:id` | Chi tiết đơn kèm tên món, topping (chủ đơn hoặc STAFF) | đăng nhập | 9 |
 | GET | `/orders` | Tất cả đơn | STAFF | 6 |
 | POST | `/payments` | Thanh toán mô phỏng (`WALLET` hoặc `CARD`; `simulate: "FAIL"` để ép lỗi khi demo); idempotent; PAID cộng điểm, lỗi thì PAYMENT_FAILED | đăng nhập | 8, 10 |
 | PATCH | `/orders/:id/status` | STAFF chuyển PREPARING, READY, COMPLETED, CANCELLED (hủy hoàn kho) | STAFF | 10 |
 
 `GET /health`, `GET /toppings`, `GET /auth/me`, `GET /orders/:id` và `PATCH /orders/:id/status` là bổ sung của nhóm (đề không nêu).
 
-### 8.2. Tiến độ 10 task
+### 8.2. Các trang giao diện
+
+| Trang | Nội dung |
+|---|---|
+| `/` | Trang chủ, giới thiệu, nút đặt món |
+| `/menu` | Thực đơn, tìm kiếm, lọc theo nhóm; chi tiết món (size, đường, đá, topping, số lượng) |
+| `/cart` | Giỏ hàng: sửa số lượng, xóa, tổng tạm tính |
+| `/checkout` | Đặt đơn (nhập mã khuyến mãi, xem tạm tính, giảm giá, tổng) rồi thanh toán Ví/Thẻ |
+| `/login`, `/register` | Đăng nhập, đăng ký; xong quay lại trang đang làm |
+| `/orders/confirmation?id=` | Chi tiết đơn: từng món, giảm giá, tổng, trạng thái |
+| `/orders/history` | Lịch sử đơn của tài khoản; bấm mã đơn để xem chi tiết |
+
+### 8.3. Tiến độ 10 task
 
 "Xong" nghĩa là chức năng chạy đầu-cuối và có test. Task được tính điểm khi đạt Definition of Done và được nghiệm thu chéo.
 
@@ -299,28 +321,14 @@ Mọi route (trừ `/`, `/health`, `/products*`, `/toppings`, `/auth/register`, 
 | 2 | API danh sách sản phẩm | 1 | Nguyễn Lê Nhựt Thắng (API); Hồ Thiên Ngân (schema, seed) | Xong | Đạt |
 | 3 | Trang Menu | 1 | Giản Thiên Lực | Xong (gọi API; loading, lỗi, rỗng) | Đạt |
 | 4 | Chi tiết, size, topping | 1 | Giản Thiên Lực | Xong (giá do server tính lại) | Đạt |
-| 5 | Giỏ hàng | 2 | Giản Thiên Lực | Xong (thêm, sửa, xóa, tổng tiền, badge) | Đạt |
+| 5 | Giỏ hàng | 2 | Giản Thiên Lực | Xong (thêm, sửa, xóa, tổng tiền, số món, lưu Context + localStorage) | Đạt |
 | 6 | API tạo đơn | 2 | Hồ Thiên Ngân | Xong (JWT, validate, PENDING) | Đạt |
 | 7 | Đăng ký, đăng nhập | 2 | Nguyễn Lê Nhựt Thắng (backend); Hà Thiên Long (giao diện) | Xong (bcrypt, JWT, guard, trang `/login`, `/register`) | Đạt |
 | 8 | Thanh toán không tiền mặt | 3 | Nguyễn Lê Nhựt Thắng | Xong (Ví/Thẻ mô phỏng, PAID/PAYMENT_FAILED, thử lại) | Đạt |
 | 9 | Xác nhận, lịch sử đơn, bàn giao | 3 | Hà Thiên Long (giao diện); Nguyễn Lê Nhựt Thắng (API, Docker, README) | Xong (`/orders/me`, trang xác nhận, Docker, README) | Đạt |
 | 10 | Nghiệp vụ nâng cao | 3 | Hồ Thiên Ngân (10b, 10c); Nguyễn Lê Nhựt Thắng (10a, 10d) | Xong (state machine, idempotency, tồn kho, khuyến mãi, điểm; test a, b, c) | Đạt |
 
-**Giới hạn đã biết:** thanh toán chỉ mô phỏng; không có giao diện barista; khách chưa tự hủy được đơn chưa thanh toán (đơn PENDING vẫn giữ kho); migration của các bảng bổ sung viết tay, cần đối chiếu với Prisma khi đổi môi trường.
-
-### 8.3. Rà soát và hoàn thiện ngày 13/11/2026
-
-Trước khi nộp, nhóm rà lại 10 task và thử luồng như một khách hàng thật. Các lỗi tìm thấy được sửa trên nhánh `fix/as1-review` (3 commit), chạy lại 22 unit và 33 test tích hợp đạt:
-
-| Vấn đề tìm thấy | Cách sửa |
-|---|---|
-| Đăng nhập giữa lúc thanh toán hoặc tải lại trang thì mất giỏ hàng (Task 5 yêu cầu lưu state) | Giỏ hàng dùng React Context + localStorage; đăng nhập xong quay về trang thanh toán |
-| Nút thanh toán ghi giá chưa trừ khuyến mãi, khách bị trừ số tiền khác | Thanh toán hai bước: đặt đơn để máy chủ tính tạm tính, giảm giá, tổng tiền; khách xem rồi mới trả |
-| Lỗi máy chủ hiện tiếng Anh; thông báo lỗi cùng màu với thông báo thành công | Đổi sang câu tiếng Việt; lỗi nền đỏ |
-| Trang menu có hai thanh điều hướng; giỏ hàng, thanh toán không chuyển qua lại được | Một thanh điều hướng chung có giỏ hàng; giỏ hàng (`/cart`) và thanh toán (`/checkout`) là trang riêng; thêm thanh tab dưới cùng trên điện thoại |
-| Mức đường/đá không lưu vào đơn; xác nhận, lịch sử không có danh sách món | Thêm cột `sugar`, `ice` (migration `20261113000000_order_item_sugar_ice`); `GET /orders/:id`, `/orders/me` trả kèm tên món, topping; giao diện hiện chi tiết |
-| Menu không báo hết hàng | Hiện "Hết hàng", "Còn N ly"; không cho thêm quá tồn kho |
-| Trang chủ, đăng nhập còn chữ của giai đoạn phát triển | Viết lại nội dung cho khách hàng |
+**Giới hạn:** thanh toán chỉ mô phỏng; không có giao diện barista; khách chưa tự hủy được đơn chưa thanh toán (đơn PENDING vẫn giữ kho); migration của các bảng bổ sung viết tay, cần đối chiếu với Prisma khi đổi môi trường.
 
 Kết quả nghiệm thu chi tiết: `docs/scrum/dod-nghiem-thu.md`.
 
@@ -348,9 +356,9 @@ Mọi chuyển tiếp khác bị chặn (lỗi 4xx). Mã nguồn: `backend/src/o
 | Quy tắc | Cách làm |
 |---|---|
 | Giá | Server tính lại từ CSDL: giá gốc + phụ thu size (S +0, M +5.000, L +10.000đ) + topping; không tin giá từ client |
-| Tồn kho | Trừ bằng `updateMany` có điều kiện (stock ≥ số lượng) trong transaction; hủy đơn hoàn kho |
+| Tồn kho | Trừ khi tạo đơn bằng `updateMany` có điều kiện (stock ≥ số lượng) trong transaction; hủy đơn hoàn kho; giao diện không cho thêm quá số còn lại |
 | Idempotency | Header `Idempotency-Key` bắt buộc khi tạo đơn và thanh toán; ràng buộc unique, gửi lại cùng khóa trả về kết quả cũ |
-| Khuyến mãi | `WELCOME10`, `SAVE20K` (điều kiện đơn tối thiểu ở Mục 6.2) |
+| Khuyến mãi | `WELCOME10`, `SAVE20K` (điều kiện đơn tối thiểu ở Mục 6.2); máy chủ tính giảm giá khi tạo đơn, khách thấy tổng tiền trước khi thanh toán |
 | Điểm thưởng | 1 điểm cho mỗi 10.000đ, cộng khi đơn PAID, thu hồi khi hủy đơn đã PAID |
 
 ---
@@ -376,9 +384,7 @@ npm run build
 
 Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cùng `DATABASE_URL` và `JWT_SECRET` (ví dụ `docker compose up -d db`, rồi migrate và seed như Mục 6.3). Các test tự tạo dữ liệu riêng nhưng **không** nên chạy trên CSDL có dữ liệu thật.
 
-**Kết quả (23/10/2026, nhánh main):** 22 unit test và 32 test tích hợp đạt; build và lint backend sạch; lint và build frontend đạt.
-
-**Kết quả (13/11/2026, nhánh main sau rà soát):** 22 unit test và 33 test tích hợp đạt (thêm test lưu mức đường/đá và chi tiết đơn); lint, build backend và frontend đạt.
+**Kết quả:** 22 unit test và 33 test tích hợp đạt (chạy ngày 13/11/2026); lint và build backend, frontend đạt.
 
 **Ba test bắt buộc của Task 10:**
 
@@ -418,7 +424,7 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | Biên bản Planning, Review, Retrospective | `docs/scrum/minutes/` |
 | Mẫu biên bản | `docs/scrum/meeting-minutes-template.md`, `retrospective-template.md` |
 | Thỏa thuận nhóm | `docs/team-agreement.md` |
-| ERD | `docs/design/ERD_MemberB/` |
+| ERD (khớp `schema.prisma`) | `docs/design/ERD_MemberB/` |
 | Phân công, tiến độ, đóng góp | `docs/phan-cong.md`, `docs/tien-do.md`, `docs/bang-dong-gop.md` |
 | Báo cáo | `docs/report/main.tex` (LaTeX) |
 
@@ -429,7 +435,7 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | 1 | 14–18/10 | 1, 2, 3, 4 | Xong Task 1; còn 9/11 điểm |
 | 2 | 19–22/10 | 5, 6, 7 + tồn | Còn 8/22 điểm |
 | 3 | 23–25/10 | 8, 9, 10 + tồn | Hoàn thành, đạt DoD; Review ngày 25/10 |
-| Hoàn thiện | 26/10 – 13/11 | Rà DoD, báo cáo LaTeX, tập demo | – |
+| Hoàn thiện | 26/10 – 13/11 | Thử lại toàn bộ luồng như khách hàng, hoàn thiện giao diện và luồng đặt hàng, báo cáo LaTeX | Hoàn thành |
 | Nộp | 15/11 | – | – |
 
 ---
@@ -443,7 +449,8 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | Đăng nhập báo sai mật khẩu với tài khoản mẫu | Chưa seed | Chạy seed (Mục 6.2) |
 | `npm install` ở backend báo `Cannot read properties of null (reading 'edgesOut')` | Lỗi npm 10.x với peer dependency | Dùng `.npmrc` có `legacy-peer-deps=true`; nếu vẫn lỗi, cập nhật npm |
 | Cảnh báo `EBADENGINE` | Node thấp hơn yêu cầu | Dùng Node 24.15+ (`nvm use`) |
-| Frontend báo "Không kết nối được" | Backend chưa chạy hoặc sai `NEXT_PUBLIC_API_URL` | Chạy backend; kiểm tra http://localhost:3001/health |
+| Frontend báo "Không kết nối được tới máy chủ BrewLite" | Backend chưa chạy hoặc sai `NEXT_PUBLIC_API_URL` | Chạy backend; kiểm tra http://localhost:3001/health |
+| Giao diện chưa đổi sau khi cập nhật mã | Trình duyệt hoặc image Docker còn bản cũ | `docker compose up -d --build frontend`, rồi tải lại bằng Ctrl+Shift+R |
 | Lỗi CORS trên trình duyệt | `FRONTEND_ORIGIN` không khớp | Sửa `FRONTEND_ORIGIN` trong `backend/.env` |
 | Cổng bị chiếm (EADDRINUSE) | Tiến trình cũ ở 3000 hoặc 3001 | Tắt tiến trình đó hoặc đổi cổng |
 | Đổi `NEXT_PUBLIC_API_URL` không có tác dụng | Biến được gắn lúc build | Build lại (`docker compose up --build`) |
@@ -461,8 +468,8 @@ Test tích hợp chạy trên PostgreSQL thật, cần đã migrate và seed cù
 | C | Hà Thiên Long | 3124410193 | Frontend, kiểm thử, Product Owner tạm |
 | D | Giản Thiên Lực | 3124410206 | Frontend |
 
-**Giảng viên hướng dẫn:** Từ Lãng Phiêu
+**Giảng viên hướng dẫn:** Từ Lăng Phiêu
 
 ---
 
-*README phiên bản 2.1: viết lại ngày 23/10/2026 sau khi hoàn thành code Assignment 1; ngày 13/11/2026 cập nhật hạn nộp, báo cáo LaTeX, thành viên và tách repository riêng. Cập nhật khi có thay đổi về cài đặt, cách chạy hoặc trạng thái nghiệm thu.*
+*README phiên bản 3.0, ngày 13/11/2026.*

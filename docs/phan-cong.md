@@ -18,8 +18,9 @@
 | Task 10 (10a, 10d): máy trạng thái, khuyến mãi, điểm thưởng | Test (a) chặn chuyển trạng thái sai; `WELCOME10`; 1 điểm / 10.000 đồng | 23/10/2026 | 25/10/2026 | Hoàn thành (23/10) | 100 | Cùng Hồ Thiên Ngân làm Task 10 |
 | Scrum Master: biên bản Sprint, Burndown | `docs/scrum/minutes/01–06`, `burndown-*.csv` | 14/10/2026 | 25/10/2026 | Hoàn thành | 100 | Biên bản 01–06 đã hoàn chỉnh (01/11) |
 | Nghiệm thu chéo Task 3, 4, 5, 6, 9 và Task 10 (10b, 10c) | Dòng nghiệm thu trong `dod-nghiem-thu.md` | 23/10/2026 | 24/10/2026 | Đạt (23/10) | 100 | Chạy Docker |
-| Báo cáo LaTeX Assignment 1 (2–3 trang, theo mẫu SGU) | `docs/report/main.tex` | 29/10/2026 | 13/11/2026 | Nội dung đã hoàn chỉnh (3 trang nội dung + phụ lục); đã điền MSSV; chờ build PDF cuối | 95 `[ước lượng]` | Nộp 15/11/2026 |
-| Rà soát và hoàn thiện trước khi nộp | Nhánh `fix/as1-review`: giỏ hàng lưu state, thanh toán hai bước, lỗi tiếng Việt, lưu mức đường/đá, trang `/cart`, `/checkout`, thanh tab điện thoại; 33 test tích hợp | 13/11/2026 | 13/11/2026 | Hoàn thành | 100 | Thử tay 6 bước luồng đặt hàng đạt |
+| Hoàn thiện giao diện và luồng đặt hàng | Trang `/cart`, `/checkout` (đặt đơn rồi thanh toán), giỏ hàng lưu bằng React Context và localStorage, lưu mức đường/đá vào đơn, chi tiết đơn có từng món, báo hết hàng, thông báo lỗi tiếng Việt, thanh tab trên điện thoại; 33 test tích hợp | 26/10/2026 | 13/11/2026 | Hoàn thành (13/11) | 100 | Thử toàn bộ luồng đặt hàng trên máy tính và điện thoại |
+| Ảnh minh họa cho báo cáo | Ảnh luồng chính và ảnh kết quả test (`docs/report/figures`) | 13/11/2026 | 13/11/2026 | Hoàn thành (13/11) | 100 | Chụp từ bản chạy bằng Docker |
+| Báo cáo LaTeX Assignment 1 (theo mẫu SGU) | `docs/report/main.tex` | 29/10/2026 | 13/11/2026 | Hoàn thành (13/11) | 100 | Nộp 15/11/2026 |
 
 ## B. Hồ Thiên Ngân (Backend: dữ liệu, đơn hàng)
 
@@ -37,7 +38,7 @@
 | Task 7 (phần giao diện): đăng ký, đăng nhập | Trang `/login`, `/register` | 19/10/2026 | 22/10/2026 | Hoàn thành giao diện (22/10) | 100 | Cùng Nguyễn Lê Nhựt Thắng (backend) làm Task 7 |
 | Task 9 (phần giao diện): xác nhận, lịch sử đơn | Trang xác nhận, trang lịch sử đơn | 23/10/2026 | 25/10/2026 | Hoàn thành (23/10) | 100 | Cùng Nguyễn Lê Nhựt Thắng (API, Docker, README) làm Task 9 |
 | Product Vision, FR/NFR, user story (báo cáo chương 1 và 3) | Nội dung yêu cầu trong báo cáo | 14/10/2026 | 13/11/2026 | Đã đưa vào báo cáo LaTeX | 100 | |
-| Kiểm thử: chạy test, kiểm tra yêu cầu | Kết quả unit và tích hợp (22, 32 test) | 14/10/2026 | 25/10/2026 | Hoàn thành | 100 | Chạy lại ngày 13/11 trên tag `assign1-final`: 22/22, 32/32 đạt |
+| Kiểm thử: chạy test, kiểm tra yêu cầu | Chạy unit và tích hợp, đối chiếu tiêu chí chấp nhận | 14/10/2026 | 25/10/2026 | Hoàn thành | 100 | |
 | Product Owner tạm: ước lượng điểm, ưu tiên Product Backlog | `product-backlog.md` | 14/10/2026 | 18/10/2026 | Hoàn thành | 100 | |
 | Nghiệm thu chéo Task 8 và Task 10 (10a, 10d) | Dòng nghiệm thu trong `dod-nghiem-thu.md` | 23/10/2026 | 24/10/2026 | Đạt (23/10) | 100 | Chạy Docker |
 
@@ -48,5 +49,4 @@
 | Task 3: Trang Menu | Lưới sản phẩm, loading, rỗng, lỗi | 14/10/2026 | 18/10/2026 | Hoàn thành giao diện (22/10) | 100 | Thực tế gộp vào Sprint 2 |
 | Task 4: Chi tiết, size, topping | Chọn size S/M/L và topping, tính giá | 14/10/2026 | 18/10/2026 | Hoàn thành giao diện (22/10) | 100 | Thực tế gộp vào Sprint 2 |
 | Task 5: Giỏ hàng | Thêm, sửa, xóa, tổng tiền, badge | 19/10/2026 | 22/10/2026 | Hoàn thành giao diện (22/10) | 100 | |
-| Ảnh minh họa cho báo cáo | Ảnh chụp màn hình luồng chính | 23/10/2026 | 25/10/2026 | Thay ảnh ngày 13/11 | 100 | Bộ ảnh ban đầu (cùng Hà Thiên Long) chụp từ bản chạy của Assignment 2 nên không dùng; ngày 13/11 Nguyễn Lê Nhựt Thắng chụp lại từ bản Assignment 1 chạy bằng Docker (`docs/report/figures`) |
 | Nghiệm thu chéo Task 2 | Dòng nghiệm thu trong `dod-nghiem-thu.md` | 23/10/2026 | 24/10/2026 | Đạt (23/10) | 100 | Chạy Docker |

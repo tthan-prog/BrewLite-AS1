@@ -16,8 +16,8 @@
 | 4 | Xác nhận đơn, lịch sử đơn `GET /orders/me`, docker-compose chạy 3 dịch vụ | 9 | C (D, A) | 3 | Hoàn thành, đạt DoD (23/10) | Docker đã chạy thử trên máy A |
 | 5 | State machine, idempotency, tồn kho đồng thời, khuyến mãi, điểm thưởng + test 10a/10b/10c | 10 | B (10b, 10c), A (10a, 10d) | 8 | Hoàn thành, đạt DoD (23/10) | 22 unit test + 32 e2e test đạt |
 | 6 | Nghiệm thu chéo từng task (A–D, không tự nghiệm thu) | 1–10 | A, B, C, D | – | Hoàn thành (23/10) | Kết quả ở `dod-nghiem-thu.md` |
-| 7 | Báo cáo LaTeX Assignment 1, chụp ảnh minh họa | – | D, C, A | – | Đang làm (còn điền MSSV) | |
-| 8 | Từ 26/10 rà lại, tập demo | – | A | – | Theo kế hoạch | |
+| 7 | Báo cáo LaTeX Assignment 1, chụp ảnh minh họa | – | A | – | Hoàn thành (13/11) | |
+| 8 | Từ 26/10: thử lại luồng như khách hàng, hoàn thiện giao diện và luồng đặt hàng, tập demo | – | A | – | Hoàn thành (13/11) | Chi tiết ở README Mục 8 |
 
 ## Rủi ro
 

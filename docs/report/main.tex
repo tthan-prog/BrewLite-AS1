@@ -174,7 +174,7 @@ KHOA CÔNG NGHỆ THÔNG TIN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Phần giới thiệu}
 \subsection{Bối cảnh và mục tiêu}
-BrewLite là ứng dụng web mobile-first giúp khách đặt đồ uống và thanh toán không dùng tiền mặt: xem menu, chọn size/topping, thêm vào giỏ, đăng nhập, đặt đơn, thanh toán mô phỏng (Ví/Thẻ) và xem lịch sử đơn. Bài tập lớn gồm 10 task theo Agile Scrum (mỗi task 1 điểm), kèm bốn nghiệp vụ backend nâng cao ở Task 10. Hạn nộp: 15/11/2026.
+BrewLite là ứng dụng web mobile-first giúp khách đặt đồ uống và thanh toán không dùng tiền mặt: xem thực đơn, chọn size, mức đường, mức đá và topping, thêm vào giỏ, đăng nhập, đặt đơn, xem tổng tiền sau khuyến mãi, thanh toán mô phỏng (Ví/Thẻ), xem xác nhận và lịch sử đơn. Bài tập lớn gồm 10 task theo Agile Scrum (mỗi task 1 điểm), kèm bốn nghiệp vụ backend nâng cao ở Task 10. Hạn nộp: 15/11/2026.
 
 \subsection{Công nghệ và sản phẩm bàn giao}
 \begin{center}
@@ -182,11 +182,11 @@ BrewLite là ứng dụng web mobile-first giúp khách đặt đồ uống và 
 \begin{tabular}{@{}p{2.8cm}p{11.2cm}@{}}
 \toprule
 \textbf{Lớp} & \textbf{Công nghệ / liên kết} \\ \midrule
-Frontend & Next.js (mobile-first), giỏ hàng, đăng nhập, thanh toán, lịch sử đơn \\
+Frontend & Next.js (mobile-first): thực đơn, chi tiết món, giỏ hàng (React Context, localStorage), thanh toán hai bước, xác nhận và lịch sử đơn; thanh tab ở đáy màn hình trên điện thoại \\
 Backend & NestJS, class-validator, JWT, bcrypt \\
-Cơ sở dữ liệu & PostgreSQL 16, Prisma 7 (migration, seed) \\
+Cơ sở dữ liệu & PostgreSQL 16, Prisma 7 (migration, seed); 9 bảng, ERD ở Hình~\ref{fig:erd} (phụ lục) \\
 Kiểm thử, vận hành & Vitest, Supertest (PostgreSQL thật); Docker Compose \\
-Mã nguồn & \url{https://github.com/tthan-prog/BrewLite-AS1} (repository riêng của Assignment 1); tag \texttt{assign1-original} (commit \texttt{e7a627a}): mã hoàn tất 23/10/2026; tag \texttt{assign1-final} (commit \texttt{9581384}): thêm bản sửa ngày 07/11 để \texttt{docker compose build} chạy được trên bản clone sạch; bản nộp: nhánh \texttt{main}, gồm bản hoàn thiện sau rà soát ngày 13/11 (mục~\ref{sec:rasoat}) \\
+Mã nguồn & \url{https://github.com/tthan-prog/BrewLite-AS1}, nhánh \texttt{main} \\
 Bản chạy & Chạy cục bộ bằng \texttt{docker compose up --build} (frontend cổng 3000, backend 3001, PostgreSQL 5432), hướng dẫn trong \texttt{README.md} \\ \bottomrule
 \end{tabular}
 \end{center}
@@ -226,7 +226,8 @@ Giản Thiên Lực (D) & Frontend & 3, 4, 5 \\
 \textbf{Sprint} & \textbf{Thời gian} & \textbf{Cam kết (điểm)} & \textbf{Xong} & \textbf{Còn lại} & \textbf{Ghi chú} \\ \midrule
 1 & 14--18/10 & 11 & 2 & 9 & Trễ, chỉ xong Task 1 \\
 2 & 19--22/10 & 22 (13 mới + 9 tồn) & 14 & 8 & Còn Task 7 backend \\
-3 & 23--25/10 & 24 (16 mới + 8 tồn) & 24 & 0 & Mã hoàn tất 23/10 \\
+3 & 23--25/10 & 24 (16 mới + 8 tồn) & 24 & 0 & Đủ 10 task, đạt DoD \\
+Hoàn thiện & 26/10--13/11 & -- & -- & -- & Thử lại luồng như khách hàng, hoàn thiện giao diện, báo cáo \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -245,18 +246,18 @@ Mỗi task chỉ tính hoàn thành khi đạt Definition of Done: chạy đư�
 2 & API sản phẩm & A (B: schema) & D & \texttt{GET /products}, 12 sản phẩm mẫu \\
 3 & Trang Menu & D & A & Gọi API, loading, rỗng, lỗi \\
 4 & Chi tiết, size, topping & D & A & Size S/M/L, phụ phí +0/+5.000/+10.000đ \\
-5 & Giỏ hàng & D & A & Thêm, sửa, xóa, tổng tiền, badge số lượng \\
-6 & API tạo đơn & B & A & \texttt{POST /orders} (JWT, PENDING) \\
+5 & Giỏ hàng & D & A & Thêm, sửa, xóa, tổng tiền, số món; lưu bằng React Context và localStorage \\
+6 & API tạo đơn & B & A & \texttt{POST /orders} (JWT, validate, PENDING, mức đường/đá) \\
 7 & Đăng ký, đăng nhập & A; C (giao diện) & B & bcrypt, JWT, guard, trang đăng nhập/đăng ký \\
-8 & Thanh toán & A; D (giao diện) & C & \texttt{POST /payments}, thử lại khi lỗi \\
-9 & Xác nhận, lịch sử, bàn giao & C; A (API) & A & \texttt{/orders/me}, xác nhận, Docker \\
+8 & Thanh toán & A; D (giao diện) & C & Đặt đơn rồi thanh toán; \texttt{POST /payments}, thử lại khi lỗi \\
+9 & Xác nhận, lịch sử, bàn giao & C; A (API) & A & \texttt{/orders/me}, xác nhận có từng món, Docker \\
 10 & Nghiệp vụ backend & A, B & A, C & Bốn nghiệp vụ và ba test bắt buộc (mục 3.2) \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \subsection{Task 10 -- nghiệp vụ backend}
-Bốn nghiệp vụ: (1) máy trạng thái đơn (PENDING, PAID, PREPARING, READY, COMPLETED, thêm PAYMENT\_FAILED và CANCELLED), mọi chuyển trạng thái đi qua một hàm kiểm tra duy nhất; (2) thanh toán idempotent bằng \texttt{Idempotency-Key}, ràng buộc duy nhất theo \texttt{(userId, key)}; (3) kiểm soát tồn kho đồng thời bằng cập nhật có điều kiện \texttt{UPDATE ... WHERE stock >= n} trong transaction, một dạng khóa lạc quan (optimistic) không cần cột \texttt{version} (không bán quá số lượng; nguyên liệu chỉ trừ khi thanh toán thành công, hủy đơn hoàn lại phần đã trừ); (4) mã khuyến mãi (\texttt{WELCOME10} giảm 10\%) và điểm thưởng (1 điểm cho mỗi 10.000 đồng, cộng khi đơn PAID).
+Bốn nghiệp vụ: (1) máy trạng thái đơn (PENDING, PAID, PREPARING, READY, COMPLETED, thêm PAYMENT\_FAILED và CANCELLED), mọi chuyển trạng thái đi qua một hàm kiểm tra duy nhất; (2) thanh toán idempotent bằng \texttt{Idempotency-Key}, ràng buộc duy nhất theo \texttt{(userId, key)}; (3) kiểm soát tồn kho đồng thời bằng cập nhật có điều kiện \texttt{UPDATE ... WHERE stock >= n} trong transaction khi tạo đơn, một dạng khóa lạc quan (optimistic) không cần cột \texttt{version}: không bán quá số lượng, hủy đơn thì hoàn kho; (4) mã khuyến mãi (\texttt{WELCOME10} giảm 10\%) và điểm thưởng (1 điểm cho mỗi 10.000 đồng, cộng khi đơn PAID).
 
 
 \begin{figure}[h!]
@@ -301,7 +302,7 @@ Tích hợp (PostgreSQL thật) & Vitest + Supertest & 33 & 33/33 đạt \\
 \bottomrule
 \end{tabular}
 \end{center}
-Chạy ngày 13/11/2026 bằng \texttt{npm test} và \texttt{npm run test:e2e} trong thư mục \texttt{backend}, CSDL PostgreSQL chạy bằng Docker Compose (ảnh kết quả: Hình~\ref{fig:testunit} và~\ref{fig:teste2e}, phụ lục). Tại tag \texttt{assign1-final} có 22 unit và 32 test tích hợp, khớp số liệu nhóm ghi ngày 23/10; bản hoàn thiện ngày 13/11 thêm 1 test tích hợp (lưu mức đường/đá, chi tiết đơn) nên có 33 test.
+Chạy ngày 13/11/2026 bằng \texttt{npm test} và \texttt{npm run test:e2e} trong thư mục \texttt{backend}, CSDL PostgreSQL chạy bằng Docker Compose (ảnh kết quả: Hình~\ref{fig:testunit} và~\ref{fig:teste2e}, phụ lục). Test tích hợp gửi yêu cầu HTTP thật vào ứng dụng NestJS, kiểm tra từng API, phân quyền, validate, giá theo size/topping, mức đường/đá, khuyến mãi, điểm thưởng và ba test bắt buộc của Task 10.
 
 \subsection{Ba test bắt buộc của Task 10}
 \begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
@@ -312,15 +313,12 @@ Chạy ngày 13/11/2026 bằng \texttt{npm test} và \texttt{npm run test:e2e} t
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bàn giao và nhìn lại}
-\textbf{Bàn giao:} mã nguồn trên Git; \texttt{docker compose up --build} chạy đủ db, backend, frontend; README hướng dẫn cài đặt, chạy, kiểm thử; demo luồng menu, giỏ hàng, đăng nhập, thanh toán, xác nhận, lịch sử.
+\textbf{Bàn giao:} mã nguồn trên Git; \texttt{docker compose up --build} chạy đủ db, backend, frontend; README hướng dẫn cài đặt, chạy, kiểm thử; demo luồng thực đơn, giỏ hàng, đăng nhập, đặt đơn với mã khuyến mãi, thanh toán lỗi rồi thử lại, xác nhận, lịch sử, cả trên giao diện điện thoại.
 
-\textbf{Retrospective.} Làm tốt: theo đường găng và có test chứng minh nghiệp vụ Task 10; README và Docker giúp chạy lại dễ. Cần cải thiện: bắt đầu muộn (Sprint 1 trễ 9 điểm); phân bố commit giữa các thành viên chưa đều (đến khi mã Assignment 1 hoàn tất ngày 23/10, commit \texttt{e7a627a}: A 36, B 5, C 1, D 1 trên 43 commit; A tích hợp phần lớn mã); nghiệm thu chéo mới ghi trong tài liệu nhóm, chưa có Approve trên từng Pull Request.
+\textbf{Retrospective.} Làm tốt: theo đường găng và có test chứng minh nghiệp vụ Task 10; README và Docker giúp chạy lại dễ. Cần cải thiện: bắt đầu muộn (Sprint 1 trễ 9 điểm); phân bố commit giữa các thành viên chưa đều (không tính commit gộp nhánh: A 28, B 4, C 1, D 1 trên 34 commit; A tích hợp phần lớn mã); giai đoạn hoàn thiện cho thấy cần tự thử luồng như khách hàng sớm hơn, ngay trong từng Sprint; nghiệm thu chéo mới ghi trong tài liệu nhóm, chưa có Approve trên từng Pull Request.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Backlog sau:} giao diện barista; cổng thanh toán thật; cho khách tự hủy đơn chưa thanh toán.
-
-\subsection{Rà soát và hoàn thiện trước khi nộp (13/11/2026)}\label{sec:rasoat}
-Trước khi nộp, nhóm thử lại toàn bộ luồng như một khách hàng và sửa các lỗi tìm thấy trên nhánh \texttt{fix/as1-review} (3 commit): (1) giỏ hàng mất khi đăng nhập hoặc tải lại trang, chưa đúng yêu cầu ``lưu state'' của Task 5, nay dùng React Context và localStorage, đăng nhập xong quay về trang thanh toán; (2) nút thanh toán ghi giá chưa trừ khuyến mãi, nay thanh toán hai bước, khách xem tạm tính, giảm giá, tổng tiền do máy chủ tính rồi mới trả; (3) lỗi máy chủ hiện tiếng Anh và cùng màu thông báo thành công, nay là câu tiếng Việt, nền đỏ; (4) hai thanh điều hướng chồng nhau, giỏ hàng và thanh toán không chuyển qua lại được, nay là trang riêng \texttt{/cart}, \texttt{/checkout} và có thanh tab dưới cùng trên điện thoại; (5) mức đường/đá được lưu vào đơn (migration mới), trang xác nhận và lịch sử hiện danh sách món; (6) menu báo hết hàng, còn ít. Sau khi sửa: 22 unit và 33 test tích hợp đạt, lint và build đạt.
 
 {\small
 \begin{thebibliography}{80}
@@ -341,7 +339,7 @@ Tài liệu chính thức: NestJS (docs.nestjs.com), Next.js (nextjs.org/docs), 
 \clearpage
 \appendix
 \section{Ảnh minh họa luồng chính}
-Ảnh chụp ngày 13/11/2026 từ nhánh \texttt{main} (bản hoàn thiện sau rà soát) chạy cục bộ bằng Docker Compose, dữ liệu mẫu từ seed, tài khoản \texttt{customer@brewlite.com}. Mã đơn là 34 vì các lần chạy test trước đó đã dùng các mã nhỏ hơn (PostgreSQL không đặt lại bộ đếm khóa chính khi xóa dữ liệu).
+Ảnh chụp ngày 13/11/2026 từ nhánh \texttt{main} chạy cục bộ bằng Docker Compose, dữ liệu mẫu từ seed, tài khoản \texttt{customer@brewlite.com}. Mã đơn là 34 vì các lần chạy test trước đó đã dùng các mã nhỏ hơn (PostgreSQL không đặt lại bộ đếm khóa chính khi xóa dữ liệu).
 
 \begin{figure}[h!]
 \centering
@@ -373,8 +371,18 @@ Tài liệu chính thức: NestJS (docs.nestjs.com), Next.js (nextjs.org/docs), 
 \begin{minipage}[t]{0.48\textwidth}\centering
 \includegraphics[width=\textwidth]{figures/ev06-lich-su.png}
 \captionof{figure}{Lịch sử đơn: chỉ có đơn \#34, thử lại không tạo đơn trùng}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}\centering
+\includegraphics[width=0.75\textwidth]{figures/ev07-dien-thoai.png}
+\captionof{figure}{Giao diện điện thoại: thanh tab Thực đơn, Giỏ hàng, Đơn hàng cố định ở đáy màn hình}
 \end{minipage}
 \end{center}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/erd.png}
+\caption{\label{fig:erd}Sơ đồ quan hệ dữ liệu (ERD), khớp \texttt{backend/prisma/schema.prisma}}
+\end{figure}
 
 \begin{figure}[h!]
 \centering
@@ -385,7 +393,7 @@ Tài liệu chính thức: NestJS (docs.nestjs.com), Next.js (nextjs.org/docs), 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth]{figures/ev12-e2e-test-33.png}
-\caption{\label{fig:teste2e}Test tích hợp (\texttt{npm run test:e2e}, PostgreSQL thật), nhánh \texttt{main} sau rà soát: 2 tệp, 33/33 đạt}
+\caption{\label{fig:teste2e}Test tích hợp (\texttt{npm run test:e2e}, PostgreSQL thật), 2 tệp, 33/33 đạt}
 \end{figure}
 
 \end{document}

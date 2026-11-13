@@ -1,10 +1,10 @@
 # BrewLite Frontend
 
-Frontend dùng Next.js App Router, React và TypeScript. Phần giao diện E phụ trách gồm đăng ký/đăng nhập (Task 7), trang xác nhận và lịch sử đơn hàng (Task 9).
+Next.js (App Router), React, TypeScript; giao diện mobile-first. Cách chạy toàn bộ hệ thống: xem [README gốc](../README.md).
 
-## Chạy trên máy cá nhân
+## Chạy riêng frontend
 
-Yêu cầu Node.js theo phiên bản trong file `.nvmrc` ở thư mục gốc dự án.
+Yêu cầu Node.js theo `.nvmrc` ở thư mục gốc và backend đang chạy ở cổng 3001.
 
 ```powershell
 npm install
@@ -12,9 +12,7 @@ Copy-Item .env.example .env.local
 npm run dev
 ```
 
-Mở http://localhost:3000.
-
-Trong `frontend/.env.local`, cấu hình URL backend mà trình duyệt truy cập được:
+Mở http://localhost:3000. Biến môi trường trong `.env.local`:
 
 ```dotenv
 NEXT_PUBLIC_API_URL=http://localhost:3001
@@ -22,14 +20,24 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 ## Các trang
 
-- `/` — trang chủ giới thiệu BrewLite
-- `/login` — đăng nhập, gọi `POST /auth/login`
-- `/register` — đăng ký, gọi `POST /auth/register`
-- `/orders/confirmation` — xác nhận đơn hàng
-- `/orders/history` — lịch sử đơn, gọi `GET /orders/me` kèm Bearer token
+| Trang | Nội dung | API dùng |
+|---|---|---|
+| `/` | Trang chủ | – |
+| `/menu` | Thực đơn, tìm kiếm, lọc; chi tiết món (size, đường, đá, topping, số lượng) | `GET /products`, `GET /toppings` |
+| `/cart` | Giỏ hàng | `GET /products` (kiểm tra tồn kho) |
+| `/checkout` | Đặt đơn (mã khuyến mãi, tạm tính, giảm giá, tổng) rồi thanh toán Ví/Thẻ | `POST /orders`, `POST /payments` |
+| `/login`, `/register` | Đăng nhập, đăng ký | `POST /auth/login`, `POST /auth/register` |
+| `/orders/confirmation?id=` | Chi tiết đơn | `GET /orders/:id` |
+| `/orders/history` | Lịch sử đơn | `GET /orders/me` |
 
-## Tích hợp backend
+## Mã nguồn chính
 
-Các trang và giao diện có thể chạy độc lập. Các chức năng gửi/đọc dữ liệu thật cần backend triển khai đúng API, schema request/response và JWT. Hiện backend scaffold ban đầu chỉ cung cấp `GET /health` và `GET /`; phối hợp với thành viên C để hoàn thiện API nghiệp vụ trước khi nghiệm thu.
+| Thư mục, file | Vai trò |
+|---|---|
+| `src/lib/api.ts` | Gọi API, đổi thông báo lỗi của máy chủ sang tiếng Việt |
+| `src/lib/cart.tsx` | Giỏ hàng dùng chung (React Context), lưu localStorage |
+| `src/lib/session.ts` | Phiên đăng nhập, trang quay lại sau khi đăng nhập, nhãn trạng thái đơn |
+| `src/lib/products.ts`, `src/lib/orders.ts` | Tải thực đơn; kiểu dữ liệu đơn hàng |
+| `src/components/site-header.tsx` | Thanh điều hướng; thanh tab ở đáy màn hình trên điện thoại |
 
 Không đưa `.env.local`, token hoặc thông tin bí mật vào Git.
