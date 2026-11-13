@@ -939,3 +939,99 @@
     align-items: flex-start;
   }
 }
+
+/* Rà soát 13/11: thông báo lỗi, hết hàng, bước thanh toán, giảm giá */
+.brew-notice.is-error {
+  background: #fff0ef;
+  color: #b42318;
+  border-bottom: 1px solid #ffd7d3;
+}
+
+.brew-card.is-sold-out {
+  opacity: 0.55;
+}
+
+.brew-card.is-sold-out .brew-card-art small {
+  background: #b42318;
+  color: #fff;
+}
+
+.brew-card-art:disabled,
+.brew-card-bottom button:disabled,
+.brew-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.brew-stock-note {
+  color: #b45340;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.brew-pay {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px dashed var(--border);
+}
+
+.brew-pay > label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 18px 0;
+}
+
+.brew-order-status {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.brew-form .brew-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 18px 0;
+}
+
+.brew-form .brew-check input {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.brew-summary .brew-discount strong {
+  color: #2f7a4b;
+}
+
+.brew-summary-note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 10px 0 0;
+}
+
+.brew-summary-note a {
+  color: var(--coffee);
+  font-weight: 700;
+}
+
+.brew-notice-link {
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 6px;
+}
+
+a.brew-back {
+  display: inline-block;
+  text-decoration: none;
+}
+
+a.brew-primary {
+  text-decoration: none;
+}

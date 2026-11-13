@@ -14,6 +14,8 @@ import {
 } from 'class-validator';
 
 export const ORDER_SIZES = ['S', 'M', 'L'] as const;
+/** Mức đường/đá (%) cho phép chọn trên giao diện. */
+export const SUGAR_ICE_LEVELS = [0, 30, 50, 70, 100] as const;
 
 export class OrderToppingDto {
   @IsInt()
@@ -38,6 +40,14 @@ export class OrderItemDto {
 
   @IsIn(ORDER_SIZES)
   size!: string;
+
+  @IsOptional()
+  @IsIn(SUGAR_ICE_LEVELS)
+  sugar?: number;
+
+  @IsOptional()
+  @IsIn(SUGAR_ICE_LEVELS)
+  ice?: number;
 
   @IsOptional()
   @IsArray()

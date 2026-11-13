@@ -365,5 +365,31 @@ describe('BrewLite API (e2e, PostgreSQL)', () => {
       await request(http).get('/orders').set(auth(alice.token)).expect(403);
       await request(http).get('/orders').set(auth(staffToken)).expect(200);
     });
+
+    it('đơn lưu mức đường/đá; chi tiết đơn có tên món và topping; mức sai -> 400', async () => {
+      const p = await newProduct(5);
+      const topping = await prisma.topping.findFirstOrThrow();
+      const o = await request(http)
+        .post('/orders')
+        .set({ ...auth(alice.token), 'Idempotency-Key': key() })
+        .send({
+          items: [
+            { ...item(p.id), sugar: 30, ice: 0, toppings: [{ toppingId: topping.id, quantity: 1 }] },
+            item(p.id, 1, 'S'),
+          ],
+        })
+        .expect(201);
+      const detail = await request(http).get(`/orders/${o.body.id}`).set(auth(alice.token)).expect(200);
+      const [first, second] = detail.body.items;
+      expect([first.sugar, first.ice]).toEqual([30, 0]);
+      expect([second.sugar, second.ice]).toEqual([100, 100]); // không chọn -> mặc định 100%
+      expect(first.product.name).toBe(p.name);
+      expect(first.toppings[0].topping.name).toBe(topping.name);
+      await request(http)
+        .post('/orders')
+        .set({ ...auth(alice.token), 'Idempotency-Key': key() })
+        .send({ items: [{ ...item(p.id), sugar: 45 }] })
+        .expect(400);
+    });
   });
 });

@@ -6,7 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
-import { CreateOrderDto } from './dto/create-order.dto.js';
+import { CreateOrderDto, SUGAR_ICE_LEVELS } from './dto/create-order.dto.js';
 import type { Prisma } from '../generated/prisma/client.js';
 import { OrderStatus } from '../generated/prisma/enums.js';
 import { assertTransition, pointsForTotal } from './order-state.js';
@@ -25,13 +25,24 @@ export const SIZE_SURCHARGE: Record<string, number> = {
   L: 10000,
 };
 
+// Kèm tên món và tên topping để giao diện hiển thị chi tiết đơn.
 const orderInclude = {
   items: {
     include: {
-      toppings: true,
+      product: { select: { id: true, name: true, imageUrl: true } },
+      toppings: { include: { topping: { select: { name: true } } } },
     },
   },
 } as const;
+
+const DEFAULT_LEVEL = 100;
+
+function isLevel(value: unknown): boolean {
+  return (
+    value === undefined ||
+    (SUGAR_ICE_LEVELS as readonly number[]).includes(value as number)
+  );
+}
 
 function isUniqueConstraintError(error: unknown): boolean {
   return (
@@ -79,7 +90,9 @@ export class OrdersService {
         !Number.isInteger(item.quantity) ||
         item.quantity <= 0 ||
         typeof item.size !== 'string' ||
-        !(item.size.trim() in SIZE_SURCHARGE)
+        !(item.size.trim() in SIZE_SURCHARGE) ||
+        !isLevel(item.sugar) ||
+        !isLevel(item.ice)
       ) {
         throw new BadRequestException('Invalid order item');
       }
@@ -107,6 +120,10 @@ export class OrdersService {
           productId: item.productId,
           quantity: item.quantity,
           size: item.size.trim(),
+          // Chỉ đưa mức đường/đá vào hash khi khác mặc định, để yêu cầu
+          // không gửi hai trường này giữ nguyên hash như trước.
+          ...((item.sugar ?? DEFAULT_LEVEL) !== DEFAULT_LEVEL && { sugar: item.sugar }),
+          ...((item.ice ?? DEFAULT_LEVEL) !== DEFAULT_LEVEL && { ice: item.ice }),
           toppings: (item.toppings ?? [])
             .map((topping) => ({
               toppingId: topping.toppingId,
@@ -166,6 +183,8 @@ export class OrdersService {
           quantity: number;
           unitPrice: number;
           size: string;
+          sugar: number;
+          ice: number;
           toppings: {
             toppingId: number;
             quantity: number;
@@ -181,25 +200,27 @@ export class OrdersService {
           if (!product) {
             throw new NotFoundException(`Product ${item.productId} not found`);
           }
+          // Trừ kho có điều kiện (stock >= quantity) trong transaction:
+          // hai đơn đồng thời không thể cùng lấy phần hàng cuối cùng (Task 10c).
           const stockUpdate = await tx.product.updateMany({
-  where: {
-    id: item.productId,
-    stock: {
-      gte: item.quantity,
-    },
-  },
-  data: {
-    stock: {
-      decrement: item.quantity,
-    },
-  },
-});
+            where: {
+              id: item.productId,
+              stock: {
+                gte: item.quantity,
+              },
+            },
+            data: {
+              stock: {
+                decrement: item.quantity,
+              },
+            },
+          });
 
-if (stockUpdate.count !== 1) {
-  throw new BadRequestException(
-    `Insufficient stock for product ${item.productId}`,
-  );
-}
+          if (stockUpdate.count !== 1) {
+            throw new BadRequestException(
+              `Insufficient stock for product ${item.productId}`,
+            );
+          }
 
           let toppingUnitTotal = 0;
 
@@ -238,6 +259,8 @@ if (stockUpdate.count !== 1) {
             quantity: item.quantity,
             unitPrice,
             size: item.size.trim(),
+            sugar: item.sugar ?? DEFAULT_LEVEL,
+            ice: item.ice ?? DEFAULT_LEVEL,
             toppings,
           });
         }
@@ -298,6 +321,8 @@ if (stockUpdate.count !== 1) {
                 quantity: item.quantity,
                 unitPrice: item.unitPrice,
                 size: item.size,
+                sugar: item.sugar,
+                ice: item.ice,
                 toppings: {
                   create: item.toppings,
                 },

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
+import { useCart } from "@/lib/cart";
 
 // Đọc phiên đăng nhập từ sessionStorage; trên server luôn là "chưa đăng nhập".
 function subscribe(callback: () => void) {
@@ -32,6 +33,7 @@ function displayName(raw: string): string {
 
 export default function SiteHeader() {
   const rawUser = useAuthState();
+  const { count } = useCart();
 
   function logout() {
     sessionStorage.removeItem("brewlite_token");
@@ -41,6 +43,7 @@ export default function SiteHeader() {
   }
 
   return (
+    <>
     <header className="site-header">
       <div className="nav-wrap">
         <Link href="/" className="brand" aria-label="BrewLite trang chủ">
@@ -52,6 +55,9 @@ export default function SiteHeader() {
           <Link href="/orders/history">Đơn hàng của tôi</Link>
         </nav>
         <div className="nav-actions">
+          <Link className="btn btn-outline nav-cart" href="/cart" aria-label={`Giỏ hàng, ${count} món`}>
+            Giỏ hàng <span className="cart-badge">{count}</span>
+          </Link>
           {rawUser ? (
             <>
               <span className="nav-user">{displayName(rawUser)}</span>
@@ -68,5 +74,19 @@ export default function SiteHeader() {
         </div>
       </div>
     </header>
+    {/* Thanh điều hướng dưới cùng trên điện thoại (màn hình nhỏ ẩn các liên kết ở trên).
+        Đặt ngoài <header>: header có backdrop-filter nên position: fixed bên trong sẽ bám theo header. */}
+    <nav className="mobile-tabbar" aria-label="Điều hướng trên điện thoại">
+      <Link href="/menu">
+        <span aria-hidden="true">☕</span>Thực đơn
+      </Link>
+      <Link href="/cart">
+        <span aria-hidden="true">🛒</span>Giỏ hàng{count > 0 && <b className="cart-badge">{count}</b>}
+      </Link>
+      <Link href="/orders/history">
+        <span aria-hidden="true">🧾</span>Đơn hàng
+      </Link>
+    </nav>
+    </>
   );
 }
